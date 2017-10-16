@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -24,20 +25,6 @@ class OrderProduct
     /**
      * @var int
      *
-     * @ORM\Column(name="order_id", type="integer")
-     */
-    private $orderId;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="product_id", type="integer")
-     */
-    private $productId;
-
-    /**
-     * @var int
-     *
      * @ORM\Column(name="quantity", type="integer")
      */
     private $quantity;
@@ -49,6 +36,23 @@ class OrderProduct
      */
     private $price;
 
+    /**
+     * @var
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Order", inversedBy="products", cascade={"persist"})
+     */
+    private $orders;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="order", cascade={"persist"})
+     */
+    private $products;
+
+
+    public function __construct()
+    {
+        $this->order = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -109,6 +113,16 @@ class OrderProduct
     }
 
     /**
+     * Get quantity
+     *
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+    /**
      * Set quantity
      *
      * @param integer $quantity
@@ -123,13 +137,13 @@ class OrderProduct
     }
 
     /**
-     * Get quantity
+     * Get price
      *
-     * @return int
+     * @return string
      */
-    public function getQuantity()
+    public function getPrice()
     {
-        return $this->quantity;
+        return $this->price;
     }
 
     /**
@@ -147,13 +161,35 @@ class OrderProduct
     }
 
     /**
-     * Get price
-     *
-     * @return string
+     * @return mixed
      */
-    public function getPrice()
+    public function getOrders()
     {
-        return $this->price;
+        return $this->orders;
+    }
+
+    /**
+     * @param mixed $orders
+     */
+    public function setOrders($orders)
+    {
+        $this->orders = $orders;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
     }
 }
 

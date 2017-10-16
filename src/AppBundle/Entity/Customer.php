@@ -66,13 +66,6 @@ class Customer
     private $companyRegister;
 
     /**
-     * @var string
-     * One Customer has Many Address
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer", cascade={"remove"})
-     */
-    private $address;
-
-    /**
      * @Assert\Ip
      *
      * @ORM\Column(name="ip", type="string", length=255)
@@ -99,6 +92,20 @@ class Customer
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @var string
+     * One Customer has Many Address
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer", cascade={"remove"})
+     */
+    private $address;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Order", mappedBy="customer", cascade={"persist"})
+     */
+    private $order;
+
 
     /**
      * Customer constructor.
@@ -371,6 +378,22 @@ class Customer
     public function setAddress($address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    /**
+     * @param mixed $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
     }
 }
 

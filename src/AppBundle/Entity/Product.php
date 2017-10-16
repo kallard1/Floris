@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -85,10 +86,16 @@ class Product
     private $categories;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\OrderProduct", inversedBy="products")
+     */
+    private $order;
+
+    /**
      *
      */
     public function  __consctruct() {
         $this->categories = new ArrayCollection();
+        $this->order = new ArrayCollection();
     }
 
     /**
