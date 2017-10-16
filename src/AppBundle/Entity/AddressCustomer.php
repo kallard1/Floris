@@ -66,7 +66,7 @@ class AddressCustomers
     /**
      *
      * Many Address has one Customer
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customers", inversedBy="address")
+     * @ORM\ManyToOne(targetEntity="Customer.php", inversedBy="address")
      */
     private $customer;
 

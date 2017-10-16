@@ -18,7 +18,6 @@ class Products
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoriesProduct", mappedBy="productId", cascade={"remove"})
      */
     private $id;
 
@@ -78,6 +77,10 @@ class Products
      */
     private $promotion;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Category.php", mappedBy="productId", cascade={"remove"})
+     */
+    private $categories;
 
     /**
      * Get id

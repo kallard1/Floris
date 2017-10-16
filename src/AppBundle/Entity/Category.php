@@ -43,6 +43,11 @@ class Categories
      */
     private $status;
 
+    /**
+     *
+     */
+    private $products;
+
 
     /**
      * Get id
