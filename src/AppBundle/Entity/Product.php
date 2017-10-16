@@ -79,7 +79,7 @@ class Product
     private $promotion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", mappedBy="products")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", inversedBy="products")
      * @ORM\JoinColumn(name="categories_products")
      */
     private $categories;
