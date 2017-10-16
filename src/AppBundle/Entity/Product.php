@@ -91,6 +91,12 @@ class Product
     private $order;
 
     /**
+     * @var
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\VatRate", inversedBy="product", cascade={"persist"})
+     */
+    private $vat_rate;
+
+    /**
      *
      */
     public function  __consctruct() {
