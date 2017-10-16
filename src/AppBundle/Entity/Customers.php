@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -99,6 +100,10 @@ class Customers
      */
     private $updatedAt;
 
+
+    public function __construct() {
+        $this->address = new ArrayCollection();
+    }
 
     /**
      * Get id
