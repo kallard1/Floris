@@ -335,4 +335,20 @@ class Product
         $this->categories->removeElement($category);
         $category->removeCategory($this);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVatRate()
+    {
+        return $this->vat_rate;
+    }
+
+    /**
+     * @param mixed $vat_rate
+     */
+    public function setVatRate($vat_rate)
+    {
+        $this->vat_rate = $vat_rate;
+    }
 }
