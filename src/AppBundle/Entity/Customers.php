@@ -19,8 +19,6 @@ class Customers
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * One Customer has Many Address
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomers", mappedBy="customer_id", cascade={"remove"})
      */
     private $id;
 
@@ -65,6 +63,13 @@ class Customers
      * @ORM\Column(name="company_register", type="string", length=14, unique=true)
      */
     private $companyRegister;
+
+    /**
+     * @var string
+     * One Customer has Many Address
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomers", mappedBy="customer", cascade={"remove"})
+     */
+    private $address;
 
     /**
      * @Assert\Ip
@@ -343,6 +348,22 @@ class Customers
     public function getToken()
     {
         return $this->token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 }
 

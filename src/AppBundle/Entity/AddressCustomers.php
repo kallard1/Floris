@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,14 +15,11 @@ class AddressCustomers
     /**
      * @var int
      *
-     * @ORM\Column(name="customer_id", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * Many Address has one Customer
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customers", inversedBy="id")
-     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $customer_id;
+    private $id;
 
     /**
      * @var string
@@ -68,6 +64,13 @@ class AddressCustomers
     private $asDefault;
 
     /**
+     *
+     * Many Address has one Customer
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customers", inversedBy="address")
+     */
+    private $customer;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -86,9 +89,9 @@ class AddressCustomers
      *
      * @return int
      */
-    public function getCustomerId()
+    public function getId()
     {
-        return $this->customer_id;
+        return $this->id;
     }
 
     /**
@@ -281,6 +284,22 @@ class AddressCustomers
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
     }
 }
 
