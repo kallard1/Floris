@@ -67,6 +67,16 @@ class Category
     }
 
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
      * Set name
      *
      * @param string $name
@@ -81,13 +91,13 @@ class Category
     }
 
     /**
-     * Get name
+     * Get description
      *
      * @return string
      */
-    public function getName()
+    public function getDescription()
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
@@ -105,13 +115,13 @@ class Category
     }
 
     /**
-     * Get description
+     * Get status
      *
-     * @return string
+     * @return bool
      */
-    public function getDescription()
+    public function getStatus()
     {
-        return $this->description;
+        return $this->status;
     }
 
     /**
@@ -126,16 +136,6 @@ class Category
         $this->status = $status;
 
         return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return bool
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
@@ -154,11 +154,19 @@ class Category
         $this->products = $products;
     }
 
-    public function addProducts(Product $product) {
+    /**
+     * @param Product $product
+     */
+    public function addProducts(Product $product)
+    {
         $this->products[] = $product;
     }
 
-    public function removeProducts(Product $product) {
+    /**
+     * @param Product $product
+     */
+    public function removeProducts(Product $product)
+    {
 
         if (!$this->products->contains($product)) {
             return;
