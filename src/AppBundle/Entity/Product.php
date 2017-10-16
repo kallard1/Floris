@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Products
+ * Product
  *
  * @ORM\Table(name="products")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductsRepository")
  */
-class Products
+class Product
 {
     /**
      * @var int
@@ -78,9 +79,17 @@ class Products
     private $promotion;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category.php", mappedBy="productId", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Category", mappedBy="products")
+     * @ORM\JoinColumn(name="categories_products")
      */
     private $categories;
+
+    /**
+     *
+     */
+    public function  __consctruct() {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -97,7 +106,7 @@ class Products
      *
      * @param string $name
      *
-     * @return Products
+     * @return Product
      */
     public function setName($name)
     {
@@ -121,7 +130,7 @@ class Products
      *
      * @param string $description
      *
-     * @return Products
+     * @return Product
      */
     public function setDescription($description)
     {
@@ -145,7 +154,7 @@ class Products
      *
      * @param string $sku
      *
-     * @return Products
+     * @return Product
      */
     public function setSku($sku)
     {
@@ -169,7 +178,7 @@ class Products
      *
      * @param string $price
      *
-     * @return Products
+     * @return Product
      */
     public function setPrice($price)
     {
@@ -193,7 +202,7 @@ class Products
      *
      * @param integer $vatId
      *
-     * @return Products
+     * @return Product
      */
     public function setVatId($vatId)
     {
@@ -217,7 +226,7 @@ class Products
      *
      * @param boolean $status
      *
-     * @return Products
+     * @return Product
      */
     public function setStatus($status)
     {
@@ -241,7 +250,7 @@ class Products
      *
      * @param integer $stock
      *
-     * @return Products
+     * @return Product
      */
     public function setStock($stock)
     {
@@ -265,7 +274,7 @@ class Products
      *
      * @param integer $promotion
      *
-     * @return Products
+     * @return Product
      */
     public function setPromotion($promotion)
     {
@@ -283,5 +292,34 @@ class Products
     {
         return $this->promotion;
     }
-}
 
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param mixed $categories
+     */
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+    }
+
+    public function addCategories(Category $category) {
+        $this->categories[] = $category;
+    }
+
+    public function removeCategories(Category $category) {
+
+        if (!$this->categories->contains($category)) {
+            return;
+        }
+
+        $this->categories->removeElement($category);
+        $category->removeCategory($this);
+    }
+}

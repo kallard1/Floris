@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrdersProducts
+ * OrderProduct
  *
  * @ORM\Table(name="orders_products")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrdersProductsRepository")
  */
-class OrdersProducts
+class OrderProduct
 {
     /**
      * @var int
@@ -65,7 +65,7 @@ class OrdersProducts
      *
      * @param integer $orderId
      *
-     * @return OrdersProducts
+     * @return OrderProduct
      */
     public function setOrderId($orderId)
     {
@@ -89,7 +89,7 @@ class OrdersProducts
      *
      * @param integer $productId
      *
-     * @return OrdersProducts
+     * @return OrderProduct
      */
     public function setProductId($productId)
     {
@@ -113,7 +113,7 @@ class OrdersProducts
      *
      * @param integer $quantity
      *
-     * @return OrdersProducts
+     * @return OrderProduct
      */
     public function setQuantity($quantity)
     {
@@ -137,7 +137,7 @@ class OrdersProducts
      *
      * @param string $price
      *
-     * @return OrdersProducts
+     * @return OrderProduct
      */
     public function setPrice($price)
     {

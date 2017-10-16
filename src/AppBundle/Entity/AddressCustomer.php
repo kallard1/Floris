@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AddressCustomers
+ * AddressCustomer
  *
  * @ORM\Table(name="address_customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AddressCustomersRepository")
  */
-class AddressCustomers
+class AddressCustomer
 {
     /**
      * @var int
@@ -66,7 +66,7 @@ class AddressCustomers
     /**
      *
      * Many Address has one Customer
-     * @ORM\ManyToOne(targetEntity="Customer.php", inversedBy="address")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="address")
      */
     private $customer;
 
@@ -99,7 +99,7 @@ class AddressCustomers
      *
      * @param string $phone
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setPhone($phone)
     {
@@ -123,7 +123,7 @@ class AddressCustomers
      *
      * @param string $street1
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setStreet1($street1)
     {
@@ -147,7 +147,7 @@ class AddressCustomers
      *
      * @param string $street2
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setStreet2($street2)
     {
@@ -171,7 +171,7 @@ class AddressCustomers
      *
      * @param string $postcode
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setPostcode($postcode)
     {
@@ -195,7 +195,7 @@ class AddressCustomers
      *
      * @param string $city
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setCity($city)
     {
@@ -219,7 +219,7 @@ class AddressCustomers
      *
      * @param boolean $asDefault
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setAsDefault($asDefault)
     {
@@ -243,7 +243,7 @@ class AddressCustomers
      *
      * @param \DateTime $createdAt
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setCreatedAt($createdAt)
     {
@@ -267,7 +267,7 @@ class AddressCustomers
      *
      * @param \DateTime $updatedAt
      *
-     * @return AddressCustomers
+     * @return AddressCustomer
      */
     public function setUpdatedAt($updatedAt)
     {

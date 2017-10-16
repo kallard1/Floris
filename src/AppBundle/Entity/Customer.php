@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="customers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomersRepository")
  */
-class Customers
+class Customer
 {
     /**
      * @var int
@@ -68,7 +68,7 @@ class Customers
     /**
      * @var string
      * One Customer has Many Address
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomers", mappedBy="customer", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer", cascade={"remove"})
      */
     private $address;
 
@@ -100,7 +100,9 @@ class Customers
      */
     private $updatedAt;
 
-
+    /**
+     * Customer constructor.
+     */
     public function __construct() {
         $this->address = new ArrayCollection();
     }
@@ -120,7 +122,7 @@ class Customers
      *
      * @param string $businessName
      *
-     * @return Customers
+     * @return Customer
      */
     public function setBusinessName($businessName)
     {
@@ -144,7 +146,7 @@ class Customers
      *
      * @param string $email
      *
-     * @return Customers
+     * @return Customer
      */
     public function setEmail($email)
     {
@@ -168,7 +170,7 @@ class Customers
      *
      * @param string $password
      *
-     * @return Customers
+     * @return Customer
      */
     public function setPassword($password)
     {
@@ -192,7 +194,7 @@ class Customers
      *
      * @param boolean $status
      *
-     * @return Customers
+     * @return Customer
      */
     public function setStatus($status)
     {
@@ -216,7 +218,7 @@ class Customers
      *
      * @param string $vatNumber
      *
-     * @return Customers
+     * @return Customer
      */
     public function setVatNumber($vatNumber)
     {
@@ -240,7 +242,7 @@ class Customers
      *
      * @param string $companyRegister
      *
-     * @return Customers
+     * @return Customer
      */
     public function setCompanyRegister($companyRegister)
     {
@@ -264,7 +266,7 @@ class Customers
      *
      * @param \DateTime $createdAt
      *
-     * @return Customers
+     * @return Customer
      */
     public function setCreatedAt($createdAt)
     {
@@ -288,7 +290,7 @@ class Customers
      *
      * @param \DateTime $updatedAt
      *
-     * @return Customers
+     * @return Customer
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -312,7 +314,7 @@ class Customers
      *
      * @param string $ip
      *
-     * @return Customers
+     * @return Customer
      */
     public function setIp($ip)
     {
@@ -336,7 +338,7 @@ class Customers
      *
      * @param string $token
      *
-     * @return Customers
+     * @return Customer
      */
     public function setToken($token)
     {

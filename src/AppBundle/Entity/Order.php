@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Orders
+ * Order
  *
  * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\OrdersRepository")
  */
-class Orders
+class Order
 {
     /**
      * @var int
@@ -72,7 +72,7 @@ class Orders
      *
      * @param integer $customerId
      *
-     * @return Orders
+     * @return Order
      */
     public function setCustomerId($customerId)
     {
@@ -96,7 +96,7 @@ class Orders
      *
      * @param integer $paymentMethodId
      *
-     * @return Orders
+     * @return Order
      */
     public function setPaymentMethodId($paymentMethodId)
     {
@@ -120,7 +120,7 @@ class Orders
      *
      * @param string $comment
      *
-     * @return Orders
+     * @return Order
      */
     public function setComment($comment)
     {
@@ -144,7 +144,7 @@ class Orders
      *
      * @param \DateTime $createdAt
      *
-     * @return Orders
+     * @return Order
      */
     public function setCreatedAt($createdAt)
     {
@@ -168,7 +168,7 @@ class Orders
      *
      * @param \DateTime $updatedAt
      *
-     * @return Orders
+     * @return Order
      */
     public function setUpdatedAt($updatedAt)
     {

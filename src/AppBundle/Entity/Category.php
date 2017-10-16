@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Categories
+ * Category
  *
  * @ORM\Table(name="categories")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoriesRepository")
  */
-class Categories
+class Category
 {
     /**
      * @var int
@@ -18,7 +19,6 @@ class Categories
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CategoriesProduct", mappedBy="categoryId", cascade={"remove"})
      */
     private $id;
 
@@ -44,10 +44,17 @@ class Categories
     private $status;
 
     /**
-     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Product", mappedBy="categories")
      */
     private $products;
 
+    /**
+     * Category constructor.
+     */
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -64,7 +71,7 @@ class Categories
      *
      * @param string $name
      *
-     * @return Categories
+     * @return Category
      */
     public function setName($name)
     {
@@ -88,7 +95,7 @@ class Categories
      *
      * @param string $description
      *
-     * @return Categories
+     * @return Category
      */
     public function setDescription($description)
     {
@@ -112,7 +119,7 @@ class Categories
      *
      * @param boolean $status
      *
-     * @return Categories
+     * @return Category
      */
     public function setStatus($status)
     {
@@ -130,5 +137,34 @@ class Categories
     {
         return $this->status;
     }
-}
 
+    /**
+     * @return mixed
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+
+    /**
+     * @param mixed $products
+     */
+    public function setProducts($products)
+    {
+        $this->products = $products;
+    }
+
+    public function addProducts(Product $product) {
+        $this->products[] = $product;
+    }
+
+    public function removeProducts(Product $product) {
+
+        if (!$this->products->contains($product)) {
+            return;
+        }
+
+        $this->products->removeElement($product);
+        $product->removeCategory($this);
+    }
+}
