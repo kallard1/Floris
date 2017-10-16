@@ -19,6 +19,8 @@ class Customers
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * One Customer has Many Address
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomers", mappedBy="customer_id", cascade={"remove"})
      */
     private $id;
 

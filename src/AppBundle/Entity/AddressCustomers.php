@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,11 +16,14 @@ class AddressCustomers
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="customer_id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * Many Address has one Customer
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customers", inversedBy="id")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
-    private $id;
+    private $customer_id;
 
     /**
      * @var string
@@ -38,9 +42,9 @@ class AddressCustomers
     /**
      * @var string
      *
-     * @ORM\Column(name="streetÂ2", type="string", length=50, nullable=true)
+     * @ORM\Column(name="street2", type="string", length=50, nullable=true)
      */
-    private $streetÂ2;
+    private $street2;
 
     /**
      * @var string
@@ -77,15 +81,14 @@ class AddressCustomers
      */
     private $updatedAt;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getCustomerId()
     {
-        return $this->id;
+        return $this->customer_id;
     }
 
     /**
@@ -137,27 +140,27 @@ class AddressCustomers
     }
 
     /**
-     * Set streetÂ2
+     * Set street2
      *
-     * @param string $streetÂ2
+     * @param string $street2
      *
      * @return AddressCustomers
      */
-    public function setStreetÂ2($streetÂ2)
+    public function setStreet2($street2)
     {
-        $this->streetÂ2 = $streetÂ2;
+        $this->street2 = $street2;
 
         return $this;
     }
 
     /**
-     * Get streetÂ2
+     * Get street2
      *
      * @return string
      */
-    public function getStreetÂ2()
+    public function getStreet2()
     {
-        return $this->streetÂ2;
+        return $this->street2;
     }
 
     /**
