@@ -95,11 +95,21 @@ class Customer
     private $updatedAt;
 
     /**
-     * @var
+     * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer")
      */
     private $address;
 
+    /**
+     * @var
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quote", mappedBy="customer")
+     */
+    private $quote;
+
+    /**
+     * Customer constructor.
+     */
     public function __construct() {
         $this->address = new ArrayCollection();
     }
@@ -353,6 +363,22 @@ class Customer
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getQuote()
+    {
+        return $this->quote;
+    }
+
+    /**
+     * @param mixed $quote
+     */
+    public function setQuote($quote)
+    {
+        $this->quote = $quote;
     }
 }
 
