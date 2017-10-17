@@ -42,6 +42,12 @@ class Quote
      */
     private $updatedAt;
 
+    /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\AddressCustomer", inversedBy="quote")
+     */
+    private $address;
 
     /**
      * Get id
@@ -123,6 +129,22 @@ class Quote
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 }
 

@@ -93,6 +93,13 @@ class AddressCustomer
     private $customer;
 
     /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Quote", mappedBy="address")
+     */
+    private $quote;
+
+    /**
      * Get id
      *
      * @return int
