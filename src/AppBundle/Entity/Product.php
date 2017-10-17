@@ -92,6 +92,13 @@ class Product
      */
     private $categories;
 
+    /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\VatRate", inversedBy="product")
+     */
+    private $vatRate;
+
 
     /**
      * Get id
@@ -333,6 +340,22 @@ class Product
     public function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVatRate()
+    {
+        return $this->vatRate;
+    }
+
+    /**
+     * @param mixed $vatRate
+     */
+    public function setVatRate($vatRate)
+    {
+        $this->vatRate = $vatRate;
     }
 }
 
