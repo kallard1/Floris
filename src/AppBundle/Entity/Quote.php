@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,11 +44,30 @@ class Quote
     private $updatedAt;
 
     /**
-     * @var
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="quote")
+     */
+    private $customer;
+
+    /**
+     * @var integer
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\AddressCustomer", inversedBy="quote")
      */
     private $address;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ProductQuote", mappedBy="quote")
+     */
+    private $productsQuote;
+
+
+    public function __construct() {
+        $this->productsQuote = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -145,6 +165,38 @@ class Quote
     public function setAddress($address)
     {
         $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getProductsQuote()
+    {
+        return $this->productsQuote;
+    }
+
+    /**
+     * @param ArrayCollection $productsQuote
+     */
+    public function setProductsQuote($productsQuote)
+    {
+        $this->productsQuote = $productsQuote;
     }
 }
 
