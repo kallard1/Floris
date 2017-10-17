@@ -317,5 +317,21 @@ class AddressCustomer
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param mixed $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
 }
 
