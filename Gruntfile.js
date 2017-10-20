@@ -1,17 +1,27 @@
 module.exports = function (grunt) {
 
-  const postcssFiles = [];
-  const browserifyFiles = {};
+  const postcssFiles = []
+  const browserifyFiles = {}
   const sassFiles = {
-    'web/assets/css/dist/global.css': 'web/assets/sass/global.scss'
-  };
+    'web/assets/css/dist/global.css': 'web/assets/sass/global.scss',
+  }
+  const watch = {
+    sass: {
+      files: ['web/assets/sass/**/*'],
+      tasks: ['sass:main'],
+      options: {
+        interrupt: false,
+        spawn: false,
+      },
+    }
+  }
 
   const appJS = [
     {name: 'global.app.js', bundle: 'globalBundle'}
   ]
 
   for (let js of appJS) {
-    browserifyFiles[js.name] = {
+    browserifyFiles[js.bundle] = {
       files: [{
         expand: true,
         src: [js.name],
@@ -27,14 +37,22 @@ module.exports = function (grunt) {
         },
       }
     }
+
+    watch[js.bundle] = {
+      files: typeof js.name === "object" ? js.name.map(e => "web/assets/es6/" + e) : ["web/assets/es6/" + js.name],
+      tasks: ['browserify:' + js.bundle],
+      options: {
+        interrupt: false,
+        spawn: false,
+      },
+    }
   }
 
   grunt.initConfig({
-
     copy: {
       css: {
         src: [
-          'node_modules/bootstrap/dist/css/bootstrap.min.css',
+          'node_modules/foundation-sites/dist/css/foundation.min.css',
         ],
         expand: true,
         flatten: true,
@@ -44,10 +62,9 @@ module.exports = function (grunt) {
       js: {
         src: [
           'node_modules/axios/dist/axios.min.js',
-          'node_modules/bootstrap/dist/js/bootstrap.min.js',
+          'node_modules/foundation-sites/dist/js/foundation.min.js',
           'node_modules/jquery/dist/jquery.min.js',
           'node_modules/lodash/lodash.min.js',
-          'node_modules/popper.js/dist/popper.min.js',
         ],
         expand: true,
         flatten: true,
@@ -114,25 +131,7 @@ module.exports = function (grunt) {
       }
     },
 
-    //Watch for any files changes
-    watch: {
-      sass: {
-        files: ['web/assets/sass/**/*'],
-        tasks: ['sass:main'],
-        options: {
-          interrupt: false,
-          spawn: false,
-        },
-      },
-      es6: {
-        files: ['web/assets/es6/**/*'],
-        tasks: ['browserify'],
-        options: {
-          interrupt: false,
-          spawn: false,
-        },
-      }
-    },
+   watch: watch,
 
     //Concurrent
     concurrent: {
