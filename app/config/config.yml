@@ -71,10 +71,15 @@ swiftmailer:
 sentry:
     dsn: "https://1d8f029466bf4e0788bf2dc80ddfd1ab:366cad1757644f3683d46dc3da7ab5e6@sentry.area42.fr/7"
 
-# app/config/config.yml
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
     organize_migrations: BY_YEAR_AND_MONTH # Version >=1.2 Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
