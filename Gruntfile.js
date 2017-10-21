@@ -52,7 +52,7 @@ module.exports = function (grunt) {
     copy: {
       css: {
         src: [
-          'node_modules/foundation-sites/dist/css/foundation.min.css',
+          'node_modules/bootstrap/dist/css/bootstrap.min.css',
         ],
         expand: true,
         flatten: true,
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
       js: {
         src: [
           'node_modules/axios/dist/axios.min.js',
-          'node_modules/foundation-sites/dist/js/foundation.min.js',
+          'node_modules/bootstrap/dist/js/bootstrap.min.js',
           'node_modules/jquery/dist/jquery.min.js',
           'node_modules/lodash/lodash.min.js',
         ],
