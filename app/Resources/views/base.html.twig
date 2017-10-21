@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             {% stylesheets
-                'assets/css/dist/foundation.min.css'
+                'assets/css/dist/bootstrap.min.css'
                 'assets/css/dist/global.css'
             filter='cssrewrite' output='assets/css/dist/app.css' %}
             <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -14,11 +21,15 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include ':partials:nav.html.twig' %}
+
+        <div class="container theme-showcase" role="main">
+            {% block body %}{% endblock %}
+        </div>
 
         {% javascripts
             'assets/js/dist/jquery.min.js'
-            'assets/js/dist/foundation.min.js'
+            'assets/js/dist/bootstrap.min.js'
         %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
