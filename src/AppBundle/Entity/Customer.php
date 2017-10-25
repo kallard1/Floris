@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -12,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="customer")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CustomerRepository")
  */
-class Customer
+class Customer extends BaseUser
 {
     /**
      * @var int
@@ -21,7 +22,7 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -29,27 +30,6 @@ class Customer
      * @ORM\Column(name="business_name", type="string", length=255)
      */
     private $businessName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255)
-     */
-    private $password;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="status", type="boolean", options={"default": 0})
-     */
-    private $status;
 
     /**
      * @var string
@@ -110,7 +90,8 @@ class Customer
     /**
      * Customer constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->address = new ArrayCollection();
     }
 
@@ -123,6 +104,16 @@ class Customer
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get businessName
+     *
+     * @return string
+     */
+    public function getBusinessName()
+    {
+        return $this->businessName;
     }
 
     /**
@@ -140,13 +131,13 @@ class Customer
     }
 
     /**
-     * Get businessName
+     * Get email
      *
      * @return string
      */
-    public function getBusinessName()
+    public function getEmail()
     {
-        return $this->businessName;
+        return $this->email;
     }
 
     /**
@@ -164,13 +155,13 @@ class Customer
     }
 
     /**
-     * Get email
+     * Get password
      *
      * @return string
      */
-    public function getEmail()
+    public function getPassword()
     {
-        return $this->email;
+        return $this->password;
     }
 
     /**
@@ -188,13 +179,13 @@ class Customer
     }
 
     /**
-     * Get password
+     * Get status
      *
-     * @return string
+     * @return bool
      */
-    public function getPassword()
+    public function getStatus()
     {
-        return $this->password;
+        return $this->status;
     }
 
     /**
@@ -212,13 +203,13 @@ class Customer
     }
 
     /**
-     * Get status
+     * Get vatNumber
      *
-     * @return bool
+     * @return string
      */
-    public function getStatus()
+    public function getVatNumber()
     {
-        return $this->status;
+        return $this->vatNumber;
     }
 
     /**
@@ -236,13 +227,13 @@ class Customer
     }
 
     /**
-     * Get vatNumber
+     * Get companyRegister
      *
      * @return string
      */
-    public function getVatNumber()
+    public function getCompanyRegister()
     {
-        return $this->vatNumber;
+        return $this->companyRegister;
     }
 
     /**
@@ -260,13 +251,13 @@ class Customer
     }
 
     /**
-     * Get companyRegister
+     * Get ip
      *
      * @return string
      */
-    public function getCompanyRegister()
+    public function getIp()
     {
-        return $this->companyRegister;
+        return $this->ip;
     }
 
     /**
@@ -284,13 +275,13 @@ class Customer
     }
 
     /**
-     * Get ip
+     * Get token
      *
      * @return string
      */
-    public function getIp()
+    public function getToken()
     {
-        return $this->ip;
+        return $this->token;
     }
 
     /**
@@ -308,13 +299,13 @@ class Customer
     }
 
     /**
-     * Get token
+     * Get createdAt
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getToken()
+    public function getCreatedAt()
     {
-        return $this->token;
+        return $this->createdAt;
     }
 
     /**
@@ -332,13 +323,13 @@ class Customer
     }
 
     /**
-     * Get createdAt
+     * Get updatedAt
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getUpdatedAt()
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -353,16 +344,6 @@ class Customer
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
