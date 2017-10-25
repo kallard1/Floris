@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sentry\SentryBundle\SentryBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new AppBundle\AppBundle(),
         ];
 
