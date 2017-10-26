@@ -361,5 +361,21 @@ class Customer extends BaseUser
     {
         $this->quote = $quote;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param ArrayCollection $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
 }
 

@@ -15,9 +15,9 @@ body {
 
 @media (max-width: 768px) {
   .navbar-toggle {
-    border: 1px solid #337ab7;
+    border: 1px solid #B2004B;
     .icon-bar {
-      border: 1px solid #337ab7;
+      border: 1px solid #B2004B;
     }
   }
 }
@@ -52,12 +52,12 @@ body {
 }
 
 .navbar-fixed-top {
-  border-bottom: 1px solid #B20033;
+  border-bottom: 1px solid #B2004B;
   background-color: #ffffff;
 }
 
 a {
-  color: #B20033;
+  color: #B2004B;
 }
 
 .brand-logo {
@@ -75,4 +75,8 @@ a {
       line-height: 33px;
     }
   }
+}
+
+.jumbotron-white {
+  background-color: #ffffff;
 }
