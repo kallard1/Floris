@@ -33,15 +33,19 @@
         </div>
     </div>
 
-    <div class="form-group">
-        {{ form_label(form.address_line1, "Address", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+    {{ dump(form.address) }}
 
-        {{ form_errors(form.address_line1) }}
+
+    {% for addressField in form.address %}
+    <div class="form-group">
+        {{ form_label(addressField.line1, "Address", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
+
 
         <div class="col-xs-10">
-            {{ form_widget(form.address_line1, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(addressField.line1, {'attr': {'class': 'form-control'}}) }}
         </div>
     </div>
+    {% endfor %}
 
     <div class="form-group">
         {{ form_label(form.email, "Adresse e-mail", {'label_attr': {'class': 'col-xs-2 control-label'}}) }}
