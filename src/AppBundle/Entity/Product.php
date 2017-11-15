@@ -364,5 +364,21 @@ class Product
     {
         $this->vatRate = $vatRate;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProductQuote()
+    {
+        return $this->productQuote;
+    }
+
+    /**
+     * @param mixed $productQuote
+     */
+    public function setProductQuote($productQuote)
+    {
+        $this->productQuote = $productQuote;
+    }
 }
 
