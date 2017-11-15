@@ -1,24 +1,24 @@
 module.exports = function (grunt) {
 
-  const postcssFiles = []
-  const browserifyFiles = {}
+  const postcssFiles = [];
+  const browserifyFiles = {};
   const sassFiles = {
-    'web/assets/css/dist/global.css': 'web/assets/sass/global.scss',
-  }
+    'web/assets/css/dist/global.css': 'web/assets/sass/global.scss'
+  };
   const watch = {
     sass: {
       files: ['web/assets/sass/**/*'],
       tasks: ['sass:main'],
       options: {
         interrupt: false,
-        spawn: false,
-      },
+        spawn: false
+      }
     }
-  }
+  };
 
   const appJS = [
     {name: 'global.app.js', bundle: 'globalBundle'}
-  ]
+  ];
 
   for (let js of appJS) {
     browserifyFiles[js.bundle] = {
@@ -34,48 +34,48 @@ module.exports = function (grunt) {
         transform: [['babelify', {presets: ['es2015']}]],
         browserifyOptions: {
           standalone: js.bundle
-        },
+        }
       }
-    }
+    };
 
     watch[js.bundle] = {
-      files: typeof js.name === "object" ? js.name.map(e => "web/assets/es6/" + e) : ["web/assets/es6/" + js.name],
+      files: typeof js.name === 'object' ? js.name.map(e => 'web/assets/es6/' + e) : ['web/assets/es6/' + js.name],
       tasks: ['browserify:' + js.bundle],
       options: {
         interrupt: false,
-        spawn: false,
-      },
-    }
+        spawn: false
+      }
+    };
   }
 
   grunt.initConfig({
     copy: {
       css: {
         src: [
-          'node_modules/bootstrap/dist/css/bootstrap.min.css',
+          'node_modules/bootstrap/dist/css/bootstrap.min.css'
         ],
         expand: true,
         flatten: true,
         cwd: '',
-        dest: 'web/assets/css/dist',
+        dest: 'web/assets/css/dist'
       },
       js: {
         src: [
           'node_modules/axios/dist/axios.min.js',
           'node_modules/bootstrap/dist/js/bootstrap.min.js',
           'node_modules/jquery/dist/jquery.min.js',
-          'node_modules/lodash/lodash.min.js',
+          'node_modules/lodash/lodash.min.js'
         ],
         expand: true,
         flatten: true,
         cwd: '',
-        dest: 'web/assets/js/dist',
+        dest: 'web/assets/js/dist'
       },
       mdi: {
         src: ['**'],
         expand: true,
         cwd: 'node_modules/mdi/fonts',
-        dest: 'web/assets/fonts/dist/mdi',
+        dest: 'web/assets/fonts/dist/mdi'
       }
     },
 
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
       main: {
         options: {
           outputStyle: 'expanded',
-          sourcemap: false,
+          sourcemap: false
         },
         files: sassFiles
       },
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
           sourcemap: false
         },
         files: sassFiles
-      },
+      }
     },
 
     // PostCss Autoprefixer
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
       },
       main: {
         src: postcssFiles
-      },
+      }
     },
 
     browserify: browserifyFiles,
@@ -131,37 +131,37 @@ module.exports = function (grunt) {
       }
     },
 
-   watch: watch,
+    watch: watch,
 
     //Concurrent
     concurrent: {
       options: {
         logConcurrentOutput: true,
-        limit: 10,
+        limit: 10
       },
       monitor: {
         tasks: ['watch:sass', 'watch:es6']
-      },
-    },
-  })
+      }
+    }
+  });
 
   // load the tasks
-  grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-contrib-copy')
-  grunt.loadNpmTasks('grunt-sass')
-  grunt.loadNpmTasks('grunt-contrib-concat')
-  grunt.loadNpmTasks('grunt-contrib-uglify')
-  grunt.loadNpmTasks('grunt-contrib-clean')
-  grunt.loadNpmTasks('grunt-concurrent')
-  grunt.loadNpmTasks('grunt-notify')
-  grunt.loadNpmTasks('grunt-text-replace')
-  grunt.loadNpmTasks('grunt-browser-sync')
-  grunt.loadNpmTasks('grunt-postcss')
-  grunt.loadNpmTasks('grunt-babel')
-  grunt.loadNpmTasks('grunt-browserify')
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-postcss');
+  grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-browserify');
 
   // define the tasks
-  grunt.registerTask('build', ['clean', 'copy', 'sass:main', 'browserify'])
-  grunt.registerTask('min', ['clean', 'copy', 'sass:min', 'browserify'])
-  grunt.registerTask('monitor', ['concurrent:monitor'])
-}
+  grunt.registerTask('build', ['clean', 'copy', 'sass:main', 'browserify']);
+  grunt.registerTask('min', ['clean', 'copy', 'sass:min', 'browserify']);
+  grunt.registerTask('monitor', ['concurrent:monitor']);
+};
