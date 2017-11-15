@@ -20,11 +20,15 @@ class RegistrationType extends AbstractType
         $builder->add('businessName')
             ->add('companyRegister')
             ->add('vatNumber')
-            ->add('address', CollectionType::class, [
+            ->add('addresses',  CollectionType::class, array(
                 'entry_type' => AddressCustomerType::class,
+                'entry_options' => array('label' => false),
+                'prototype_name' => 'address__name__',
                 'allow_add' => false,
+                'allow_delete' => false,
+                'prototype' => true,
                 'by_reference' => false
-            ]);
+            ));
     }
 
     public function getParent()
