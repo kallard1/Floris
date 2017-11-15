@@ -69,7 +69,7 @@ swiftmailer:
     spool: { type: memory }
 
 sentry:
-    dsn: "https://1d8f029466bf4e0788bf2dc80ddfd1ab:366cad1757644f3683d46dc3da7ab5e6@sentry.area42.fr/7"
+    dsn: '%sentry_dsn%'
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
