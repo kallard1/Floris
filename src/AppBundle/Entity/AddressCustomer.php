@@ -87,7 +87,7 @@ class AddressCustomer
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="address")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Customer", inversedBy="addresses")
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;

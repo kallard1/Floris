@@ -78,7 +78,7 @@ class Customer extends BaseUser
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer")
      */
-    private $address;
+    private $addresses;
 
     /**
      * @var
@@ -92,7 +92,7 @@ class Customer extends BaseUser
      */
     public function __construct()
     {
-        $this->address = new ArrayCollection();
+        $this->addresses = new ArrayCollection();
     }
 
 
@@ -347,6 +347,22 @@ class Customer extends BaseUser
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getAddresses()
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param ArrayCollection $address
+     */
+    public function setAddresses(ArrayCollection $addresses)
+    {
+        $this->addresses = $addresses;
+    }
+
+    /**
      * @return mixed
      */
     public function getQuote()
@@ -360,22 +376,6 @@ class Customer extends BaseUser
     public function setQuote($quote)
     {
         $this->quote = $quote;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param ArrayCollection $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
     }
 }
 

@@ -60,7 +60,7 @@ class ProductQuote
     /**
      * @var
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Quote", inversedBy="products")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Quote", inversedBy="productsQuote")
      */
     private $quote;
 
