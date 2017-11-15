@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,12 +16,12 @@ class AddressCustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('line1', TextType::class)
-            ->add('line2')
-            ->add('postalCode')
-            ->add('city')
-            ->add('country')
-            ->add('phone')
-            ->add('asDefault');
+            ->add('line2', TextType::class)
+            ->add('postalCode', TextType::class)
+            ->add('city', TextType::class)
+            ->add('country', TextType::class)
+            ->add('phone', TextType::class)
+            ->add('asDefault', CheckboxType::class);
     }
 
     /**
