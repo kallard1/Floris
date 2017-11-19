@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -46,12 +47,21 @@ class Customer extends BaseUser
     private $companyRegister;
 
     /**
-     * @var string
+     * @var string $createdFromIp
      *
-     * @ORM\Column(name="ip", type="string", length=15)
-     * @Assert\Ip()
+     * @Gedmo\IpTraceable(on="create")
+     * @ORM\Column(length=45, nullable=true)
      */
-    private $ip;
+    private $createdFromIp;
+
+    /**
+     * @var string $updatedFromIp
+     *
+     * @Gedmo\IpTraceable(on="update")
+     * @ORM\Column(length=45, nullable=true)
+     */
+    private $updatedFromIp;
+
 
     /**
      * @var string
@@ -61,22 +71,24 @@ class Customer extends BaseUser
     private $token;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AddressCustomer", mappedBy="customer", cascade={"persist"})
      */
     private $addresses;
 
@@ -94,7 +106,6 @@ class Customer extends BaseUser
     {
         $this->addresses = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -251,30 +262,6 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get ip
-     *
-     * @return string
-     */
-    public function getIp()
-    {
-        return $this->ip;
-    }
-
-    /**
-     * Set ip
-     *
-     * @param string $ip
-     *
-     * @return Customer
-     */
-    public function setIp($ip)
-    {
-        $this->ip = $ip;
-
-        return $this;
-    }
-
-    /**
      * Get token
      *
      * @return string
@@ -309,20 +296,6 @@ class Customer extends BaseUser
     }
 
     /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Customer
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
      * Get updatedAt
      *
      * @return \DateTime
@@ -330,20 +303,6 @@ class Customer extends BaseUser
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Customer
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 
     /**
@@ -355,7 +314,8 @@ class Customer extends BaseUser
     }
 
     /**
-     * @param ArrayCollection $address
+     * @param ArrayCollection $addresses
+     * @internal param ArrayCollection $address
      */
     public function setAddresses(ArrayCollection $addresses)
     {
@@ -376,6 +336,38 @@ class Customer extends BaseUser
     public function setQuote($quote)
     {
         $this->quote = $quote;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedFromIp()
+    {
+        return $this->createdFromIp;
+    }
+
+    /**
+     * @param string $createdFromIp
+     */
+    public function setCreatedFromIp($createdFromIp)
+    {
+        $this->createdFromIp = $createdFromIp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatedFromIp()
+    {
+        return $this->updatedFromIp;
+    }
+
+    /**
+     * @param string $updatedFromIp
+     */
+    public function setUpdatedFromIp($updatedFromIp)
+    {
+        $this->updatedFromIp = $updatedFromIp;
     }
 }
 
