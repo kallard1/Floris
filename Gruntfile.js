@@ -52,7 +52,8 @@ module.exports = function (grunt) {
     copy: {
       css: {
         src: [
-          'node_modules/bootstrap/dist/css/bootstrap.min.css'
+          'node_modules/bootstrap/dist/css/bootstrap.min.css',
+          'node_modules/mdi/css/materialdesignicons.min.css',
         ],
         expand: true,
         flatten: true,
