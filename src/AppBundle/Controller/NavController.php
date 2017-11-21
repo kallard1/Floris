@@ -15,7 +15,7 @@ class NavController extends Controller
 
         $categories = $repository->getActivesCategories();
 
-        return $this->render('::partials:nav.html.twig', array(
+        return $this->render('AppBundle:partials:categories.html.twig', array(
             'categories' => $categories
         ));
     }
