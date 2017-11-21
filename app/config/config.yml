@@ -32,6 +32,9 @@ framework:
     assets: ~
     php_errors:
         log: true
+    cache:
+        app: cache.adapter.redis
+        default_redis_provider: "redis://%redis_host%:%redis_port%"
 
 # Twig Configuration
 twig:
@@ -130,3 +133,26 @@ fos_user:
             enabled: true
         form:
             type: AppBundle\Form\RegistrationType
+
+snc_redis:
+    clients:
+        default:
+            type: predis
+            alias: default
+            dsn: "redis://%redis_host%:%redis_port%"
+        doctrine:
+            type: predis
+            alias: doctrine
+            dsn: "redis://%redis_host%:%redis_port%"
+    doctrine:
+        metadata_cache:
+            client: doctrine
+            entity_manager: default
+            document_manager: default
+        result_cache:
+            client: doctrine
+            entity_manager: default
+        query_cache:
+            client: doctrine
+            entity_manager: default
+
