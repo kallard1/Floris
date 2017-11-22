@@ -12,14 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
-    public function getActivesCategories() {
-        //$categories = $this->findBy(['status' => $active]);
-
-        $categories = $this->getEntityManager()->createQuery("SELECT c.name, c.status FROM AppBundle:category c WHERE c.status = true");
-
-        $categories->useResultCache(true);
-        $categories->setResultCacheLifetime(3600);
-
-        return $categories->getResult();
+    public function getCategories($active) {
+        return $this->findBy(['status' => $active]);
     }
 }
