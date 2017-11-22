@@ -13,7 +13,7 @@ class NavController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Category');
 
-        $categories = $repository->getActivesCategories();
+        $categories = $repository->getCategories(true);
 
         return $this->render('AppBundle:partials:categories.html.twig', array(
             'categories' => $categories
