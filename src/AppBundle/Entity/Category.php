@@ -46,21 +46,23 @@ class Category
     /**
      * @var bool
      *
-     * @ORM\Column(name="status", type="boolean", options={"default": 0})
+     * @ORM\Column(name="status", type="boolean", nullable=true, options={"default": 0})
      */
     private $status;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
