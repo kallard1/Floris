@@ -93,6 +93,7 @@ stof_doctrine_extensions:
         default:
             timestampable: true
             loggable: true
+            sluggable: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -103,7 +104,8 @@ swiftmailer:
     spool: { type: memory }
 
 sentry:
-    dsn: '%sentry_dsn%'
+    dsn: "%sentry_dsn%"
+    release: "%version%"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -131,25 +133,9 @@ fos_user:
         form:
             type: AppBundle\Form\RegistrationType
 
-#snc_redis:
-#    clients:
-#        default:
-#            type: predis
-#            alias: default
-#            dsn: "redis://%redis_host%:%redis_port%"
-#        doctrine:
-#            type: predis
-#            alias: doctrine
-#            dsn: "redis://%redis_host%:%redis_port%"
-#    doctrine:
-#        metadata_cache:
-#            client: doctrine
-#            entity_manager: default
-#            document_manager: default
-#        result_cache:
-#            client: doctrine
-#            entity_manager: default
-#        query_cache:
-#            client: doctrine
-#            entity_manager: default
-
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
