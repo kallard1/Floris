@@ -74,12 +74,6 @@ doctrine:
                         dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
                         alias: GedmoTranslator # (optional) it will default to the name set for the mapping
                         is_bundle: false
-                    gedmo_loggable:
-                        type: annotation
-                        prefix: Gedmo\Loggable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-                        alias: GedmoLoggable # (optional) it will default to the name set for the mappingmapping
-                        is_bundle: false
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
@@ -105,7 +99,7 @@ swiftmailer:
 
 sentry:
     dsn: "%sentry_dsn%"
-    release: "%version%"
+    release: "0.1.0"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

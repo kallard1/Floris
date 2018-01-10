@@ -2,27 +2,31 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Category;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class CatalogController extends Controller
 {
     /**
      * @Route("/catalog/{slug}", name="catalog")
+     * @ParamConverter("category", class="AppBundle\Entity\Category", options={"slug" = "slug"})
+     * @param Category $category
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction($slug)
+    public function indexAction(Category $category)
     {
-
         $repository = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Product');
 
-        $categories = $repository->getCatalogProduct();
+        $products = $repository->getCatalogProduct($category);
 
-        return $this->render('AppBundle:Catalog:index.html.twig', array(
-            'slug' => $slug
-        ));
+        dump($products);
+
+        return $this->render('AppBundle:Catalog:index.html.twig', []);
     }
 
 }

@@ -100,14 +100,6 @@ class Product
     private $vatRate;
 
     /**
-     * @var
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ProductQuote", inversedBy="product")
-     */
-    private $productQuote;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -363,22 +355,6 @@ class Product
     public function setVatRate($vatRate)
     {
         $this->vatRate = $vatRate;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProductQuote()
-    {
-        return $this->productQuote;
-    }
-
-    /**
-     * @param mixed $productQuote
-     */
-    public function setProductQuote($productQuote)
-    {
-        $this->productQuote = $productQuote;
     }
 }
 

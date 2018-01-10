@@ -4,7 +4,9 @@
            aria-expanded="false">Catalog <span class="caret"></span></a>
         <ul class="dropdown-menu">
             {% for category in categories %}
-                <li class="dropdown-header">{{ category.name }}</li>
+                <li>
+                    <a href="{{ path('catalog', {'slug': category.slug}) }}">{{ category.name }}</a>
+                </li>
             {% endfor %}
         </ul>
     </li>

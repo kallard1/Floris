@@ -1,6 +1,8 @@
 @import "components/colors";
 @import "components/variables";
 
+$primary-color: #FC9E73;
+
 body {
   padding-top: 70px;
   padding-bottom: 30px;
@@ -15,9 +17,9 @@ body {
 
 @media (max-width: 768px) {
   .navbar-toggle {
-    border: 1px solid #B2004B;
+    border: 1px solid $primary-color;
     .icon-bar {
-      border: 1px solid #B2004B;
+      border: 1px solid $primary-color;
     }
   }
 }
@@ -52,21 +54,21 @@ body {
 }
 
 .navbar-fixed-top {
-  border-bottom: 1px solid #B2004B;
+  border-bottom: 1px solid $primary-color;
   background-color: #ffffff;
 }
 
 a {
-  color: #B2004B;
+  color: $primary-color;
 }
 
 .brand-logo {
   z-index: 9000;
-  width: 100px;
-  height: 100px;
+  width: 202px;
+  height: 61px;
   background: url('../../images/logo.png') no-repeat;
-  background-size: 100px 100px;
-  margin-top: -1px;
+  background-size: 202px 61px;
+  margin-top: 7px;
 }
 
 .navbar-nav {

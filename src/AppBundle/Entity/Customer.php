@@ -93,17 +93,11 @@ class Customer extends BaseUser
     private $addresses;
 
     /**
-     * @var
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quote", mappedBy="customer")
-     */
-    private $quote;
-
-    /**
      * Customer constructor.
      */
     public function __construct()
     {
+        parent::__construct();
         $this->addresses = new ArrayCollection();
     }
 
@@ -185,30 +179,6 @@ class Customer extends BaseUser
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return bool
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set status
-     *
-     * @param boolean $status
-     *
-     * @return Customer
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
 
         return $this;
     }
@@ -320,22 +290,6 @@ class Customer extends BaseUser
     public function setAddresses(ArrayCollection $addresses)
     {
         $this->addresses = $addresses;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQuote()
-    {
-        return $this->quote;
-    }
-
-    /**
-     * @param mixed $quote
-     */
-    public function setQuote($quote)
-    {
-        $this->quote = $quote;
     }
 
     /**
