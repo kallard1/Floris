@@ -7,7 +7,7 @@ services:
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
-        autowire: true
+        autowire: false
         # automatically registers your services as commands, event subscribers, etc.
         autoconfigure: true
         # this means you cannot fetch services directly from the container via $container->get()
@@ -33,3 +33,30 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+    gedmo_doctrine_extensions.listener.ip_traceable:
+        class: Gedmo\IpTraceable\IpTraceableListener
+        public: false
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [setAnnotationReader, [ "@annotation_reader"]]
+
+    admin.category:
+        class: AppBundle\Controller\Admin\CategoryAdminController
+        arguments: [~, AppBundle\Entity\Category, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Category }
+        public: true
+    admin.product:
+        class: AppBundle\Controller\Admin\ProductAdminController
+        arguments: [~, AppBundle\Entity\Product, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Products }
+        public: true
+    admin.vat:
+        class: AppBundle\Controller\Admin\VatRateAdminController
+        arguments: [~, AppBundle\Entity\VatRate, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Vat Rate }
+        public: true
