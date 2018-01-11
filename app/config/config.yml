@@ -133,6 +133,11 @@ fos_user:
         form:
             type: AppBundle\Form\RegistrationType
 
+sonata_core:
+    form:
+        mapping:
+            enabled: false
+
 sonata_block:
     default_contexts: [cms]
     blocks:
