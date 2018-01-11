@@ -8,35 +8,28 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            {% stylesheets
-                'assets/css/dist/bootstrap.min.css'
-                'assets/css/dist/materialdesignicons.min.css'
-                'assets/css/dist/global.css'
-            filter='cssrewrite' output='assets/css/dist/app.css' %}
-            <link rel="stylesheet" href="{{ asset_url }}"/>
-            {% endstylesheets %}
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% include 'AppBundle:partials:nav.html.twig' %}
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/dist/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/dist/materialdesignicons.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('assets/css/dist/global.css') }}"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+{% include 'AppBundle:partials:nav.html.twig' %}
 
-        <div class="container theme-showcase" role="main">
-            <div class="jumbotron jumbotron-white">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron jumbotron-white">
+        {% block body %}{% endblock %}
+    </div>
+</div>
 
-        {% javascripts
-            'assets/js/dist/jquery.min.js'
-            'assets/js/dist/bootstrap.min.js'
-            'assets/js/dist/global.min.js'
-        %}
-            <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% block javascript %}{% endblock %}
-    </body>
+{% block javascripts %}
+    <script src="{{ asset('assets/js/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dist/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dist/global.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>
