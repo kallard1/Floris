@@ -8,6 +8,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Category
  *
+ * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CategoryRepository")
  */
@@ -25,7 +26,7 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45, unique=true)
+     * @ORM\Column(name="name", type="string", length=60, unique=true)
      */
     private $name;
 
@@ -48,7 +49,39 @@ class Category
      *
      * @ORM\Column(name="status", type="boolean", nullable=true, options={"default": 0})
      */
-    private $status;
+    private $status = false;
+
+    /**
+     * @Gedmo\TreeLeft
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $lft;
+    /**
+     * @Gedmo\TreeRight
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $rgt;
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
+     */
+    private $parent;
+    /**
+     * @Gedmo\TreeRoot
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $root;
+    /**
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer", nullable=true)
+     */
+    private $level;
+    /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     */
+    private $children;
+
 
     /**
      * @var \DateTime $createdAt
@@ -74,7 +107,15 @@ class Category
     private $products;
 
     /**
-     * Get id
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -84,7 +125,7 @@ class Category
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -98,7 +139,7 @@ class Category
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -108,13 +149,37 @@ class Category
     }
 
     /**
-     * Set description
+     * Set slug.
      *
-     * @param string $description
+     * @param string $slug
      *
      * @return Category
      */
-    public function setDescription($description)
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug.
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set description.
+     *
+     * @param string|null $description
+     *
+     * @return Category
+     */
+    public function setDescription($description = null)
     {
         $this->description = $description;
 
@@ -122,9 +187,9 @@ class Category
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -132,13 +197,13 @@ class Category
     }
 
     /**
-     * Set status
+     * Set status.
      *
-     * @param boolean $status
+     * @param bool|null $status
      *
      * @return Category
      */
-    public function setStatus($status)
+    public function setStatus($status = null)
     {
         $this->status = $status;
 
@@ -146,9 +211,9 @@ class Category
     }
 
     /**
-     * Get status
+     * Get status.
      *
-     * @return bool
+     * @return bool|null
      */
     public function getStatus()
     {
@@ -156,7 +221,63 @@ class Category
     }
 
     /**
-     * Set createdAt
+     * @param $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLeft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRight()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -170,7 +291,7 @@ class Category
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -180,7 +301,7 @@ class Category
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -194,7 +315,7 @@ class Category
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -204,35 +325,43 @@ class Category
     }
 
     /**
-     * @return mixed
+     * Add product.
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return Category
+     */
+    public function addProduct(\AppBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product.
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduct(\AppBundle\Entity\Product $product)
+    {
+        return $this->products->removeElement($product);
+    }
+
+    /**
+     * Get products.
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProducts()
     {
         return $this->products;
     }
 
-    /**
-     * @param mixed $products
-     */
-    public function setProducts($products)
+    public function __toString()
     {
-        $this->products = $products;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param mixed $slug
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
+        return $this->getName();
     }
 }
-
