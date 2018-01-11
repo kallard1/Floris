@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * VatRate
@@ -31,30 +32,25 @@ class VatRate
     /**
      * @var int
      *
-     * @ORM\Column(name="rate", type="smallint")
+     * @ORM\Column(name="rate", type="float")
      */
     private $rate;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Product", mappedBy="vatRate")
-     */
-    private $product;
 
 
     /**
@@ -161,22 +157,6 @@ class VatRate
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param mixed $product
-     */
-    public function setProduct($product)
-    {
-        $this->product = $product;
     }
 }
 
