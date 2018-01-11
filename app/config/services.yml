@@ -48,3 +48,15 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }
         public: true
+    admin.product:
+        class: AppBundle\Controller\Admin\ProductAdminController
+        arguments: [~, AppBundle\Entity\Product, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Products }
+        public: true
+    admin.vat:
+        class: AppBundle\Controller\Admin\VatRateAdminController
+        arguments: [~, AppBundle\Entity\VatRate, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Vat Rate }
+        public: true
