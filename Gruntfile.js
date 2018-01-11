@@ -3,7 +3,7 @@ module.exports = function (grunt) {
   const postcssFiles = [];
   const browserifyFiles = {};
   const sassFiles = {
-    'web/assets/css/dist/global.css': 'web/assets/sass/global.scss'
+    'web/assets/css/global.css': 'web/assets/sass/global.scss'
   };
   const watch = {
     sass: {
@@ -28,7 +28,7 @@ module.exports = function (grunt) {
         cwd: 'web/assets/es6/',
         ext: '.min.js',
         extDot: 'first',
-        dest: 'web/assets/js/dist'
+        dest: 'web/assets/js'
       }],
       options: {
         transform: [['babelify', {presets: ['es2015']}]],
@@ -58,7 +58,7 @@ module.exports = function (grunt) {
         expand: true,
         flatten: true,
         cwd: '',
-        dest: 'web/assets/css/dist'
+        dest: 'web/assets/css'
       },
       js: {
         src: [
@@ -70,13 +70,13 @@ module.exports = function (grunt) {
         expand: true,
         flatten: true,
         cwd: '',
-        dest: 'web/assets/js/dist'
+        dest: 'web/assets/js'
       },
       mdi: {
         src: ['**'],
         expand: true,
         cwd: 'node_modules/mdi/fonts',
-        dest: 'web/assets/fonts/dist/mdi'
+        dest: 'web/assets/fonts'
       }
     },
 
@@ -122,13 +122,13 @@ module.exports = function (grunt) {
     // Clean
     clean: {
       js: {
-        src: 'web/assets/js/dist'
+        src: 'web/assets/js'
       },
       css: {
-        src: 'web/assets/css/dist'
+        src: 'web/assets/css'
       },
       fonts: {
-        src: 'web/assets/fonts/dist'
+        src: 'web/assets/fonts'
       }
     },
 
