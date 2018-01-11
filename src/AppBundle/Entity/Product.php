@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 
 /**
  * Product
@@ -95,7 +96,8 @@ class Product
     /**
      * @var
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\VatRate", inversedBy="product")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\VatRate")
+     * @JoinColumn(name="vat_rate", referencedColumnName="id")
      */
     private $vatRate;
 
