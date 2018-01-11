@@ -102,27 +102,7 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get businessName
-     *
-     * @return string
-     */
-    public function getBusinessName()
-    {
-        return $this->businessName;
-    }
-
-    /**
-     * Set businessName
+     * Set businessName.
      *
      * @param string $businessName
      *
@@ -136,65 +116,17 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get email
+     * Get businessName.
      *
      * @return string
      */
-    public function getEmail()
+    public function getBusinessName()
     {
-        return $this->email;
+        return $this->businessName;
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Customer
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Customer
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get vatNumber
-     *
-     * @return string
-     */
-    public function getVatNumber()
-    {
-        return $this->vatNumber;
-    }
-
-    /**
-     * Set vatNumber
+     * Set vatNumber.
      *
      * @param string $vatNumber
      *
@@ -208,17 +140,17 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get companyRegister
+     * Get vatNumber.
      *
      * @return string
      */
-    public function getCompanyRegister()
+    public function getVatNumber()
     {
-        return $this->companyRegister;
+        return $this->vatNumber;
     }
 
     /**
-     * Set companyRegister
+     * Set companyRegister.
      *
      * @param string $companyRegister
      *
@@ -232,23 +164,71 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get token
+     * Get companyRegister.
      *
      * @return string
      */
-    public function getToken()
+    public function getCompanyRegister()
     {
-        return $this->token;
+        return $this->companyRegister;
     }
 
     /**
-     * Set token
+     * Set createdFromIp.
      *
-     * @param string $token
+     * @param string|null $createdFromIp
      *
      * @return Customer
      */
-    public function setToken($token)
+    public function setCreatedFromIp($createdFromIp = null)
+    {
+        $this->createdFromIp = $createdFromIp;
+
+        return $this;
+    }
+
+    /**
+     * Get createdFromIp.
+     *
+     * @return string|null
+     */
+    public function getCreatedFromIp()
+    {
+        return $this->createdFromIp;
+    }
+
+    /**
+     * Set updatedFromIp.
+     *
+     * @param string|null $updatedFromIp
+     *
+     * @return Customer
+     */
+    public function setUpdatedFromIp($updatedFromIp = null)
+    {
+        $this->updatedFromIp = $updatedFromIp;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedFromIp.
+     *
+     * @return string|null
+     */
+    public function getUpdatedFromIp()
+    {
+        return $this->updatedFromIp;
+    }
+
+    /**
+     * Set token.
+     *
+     * @param string|null $token
+     *
+     * @return Customer
+     */
+    public function setToken($token = null)
     {
         $this->token = $token;
 
@@ -256,7 +236,31 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get createdAt
+     * Get token.
+     *
+     * @return string|null
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set createdAt.
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Customer
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -266,7 +270,21 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get updatedAt
+     * Set updatedAt.
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Customer
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -276,52 +294,38 @@ class Customer extends BaseUser
     }
 
     /**
-     * @return ArrayCollection
+     * Add address.
+     *
+     * @param \AppBundle\Entity\AddressCustomer $address
+     *
+     * @return Customer
+     */
+    public function addAddress(\AppBundle\Entity\AddressCustomer $address)
+    {
+        $this->addresses[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address.
+     *
+     * @param \AppBundle\Entity\AddressCustomer $address
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeAddress(\AppBundle\Entity\AddressCustomer $address)
+    {
+        return $this->addresses->removeElement($address);
+    }
+
+    /**
+     * Get addresses.
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAddresses()
     {
         return $this->addresses;
     }
-
-    /**
-     * @param ArrayCollection $addresses
-     * @internal param ArrayCollection $address
-     */
-    public function setAddresses(ArrayCollection $addresses)
-    {
-        $this->addresses = $addresses;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCreatedFromIp()
-    {
-        return $this->createdFromIp;
-    }
-
-    /**
-     * @param string $createdFromIp
-     */
-    public function setCreatedFromIp($createdFromIp)
-    {
-        $this->createdFromIp = $createdFromIp;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUpdatedFromIp()
-    {
-        return $this->updatedFromIp;
-    }
-
-    /**
-     * @param string $updatedFromIp
-     */
-    public function setUpdatedFromIp($updatedFromIp)
-    {
-        $this->updatedFromIp = $updatedFromIp;
-    }
 }
-

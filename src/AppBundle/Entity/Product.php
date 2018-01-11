@@ -102,7 +102,15 @@ class Product
     private $vatRate;
 
     /**
-     * Get id
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id.
      *
      * @return int
      */
@@ -112,7 +120,7 @@ class Product
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -126,7 +134,7 @@ class Product
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -136,7 +144,7 @@ class Product
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -150,7 +158,7 @@ class Product
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -160,7 +168,7 @@ class Product
     }
 
     /**
-     * Set sku
+     * Set sku.
      *
      * @param string $sku
      *
@@ -174,7 +182,7 @@ class Product
     }
 
     /**
-     * Get sku
+     * Get sku.
      *
      * @return string
      */
@@ -184,7 +192,7 @@ class Product
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param string $price
      *
@@ -198,7 +206,7 @@ class Product
     }
 
     /**
-     * Get price
+     * Get price.
      *
      * @return string
      */
@@ -208,9 +216,9 @@ class Product
     }
 
     /**
-     * Set status
+     * Set status.
      *
-     * @param boolean $status
+     * @param bool $status
      *
      * @return Product
      */
@@ -222,7 +230,7 @@ class Product
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return bool
      */
@@ -232,9 +240,9 @@ class Product
     }
 
     /**
-     * Set stock
+     * Set stock.
      *
-     * @param integer $stock
+     * @param int $stock
      *
      * @return Product
      */
@@ -246,7 +254,7 @@ class Product
     }
 
     /**
-     * Get stock
+     * Get stock.
      *
      * @return int
      */
@@ -256,9 +264,9 @@ class Product
     }
 
     /**
-     * Set promotion
+     * Set promotion.
      *
-     * @param integer $promotion
+     * @param int $promotion
      *
      * @return Product
      */
@@ -270,7 +278,7 @@ class Product
     }
 
     /**
-     * Get promotion
+     * Get promotion.
      *
      * @return int
      */
@@ -280,7 +288,7 @@ class Product
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -294,7 +302,7 @@ class Product
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -304,7 +312,7 @@ class Product
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -318,7 +326,7 @@ class Product
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -328,7 +336,35 @@ class Product
     }
 
     /**
-     * @return mixed
+     * Add category.
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Product
+     */
+    public function addCategory(\AppBundle\Entity\Category $category)
+    {
+        $this->categories[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category.
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeCategory(\AppBundle\Entity\Category $category)
+    {
+        return $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories.
+     *
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -336,27 +372,26 @@ class Product
     }
 
     /**
-     * @param mixed $categories
+     * Set vatRate.
+     *
+     * @param \AppBundle\Entity\VatRate|null $vatRate
+     *
+     * @return Product
      */
-    public function setCategories($categories)
+    public function setVatRate(\AppBundle\Entity\VatRate $vatRate = null)
     {
-        $this->categories = $categories;
+        $this->vatRate = $vatRate;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get vatRate.
+     *
+     * @return \AppBundle\Entity\VatRate|null
      */
     public function getVatRate()
     {
         return $this->vatRate;
     }
-
-    /**
-     * @param mixed $vatRate
-     */
-    public function setVatRate($vatRate)
-    {
-        $this->vatRate = $vatRate;
-    }
 }
-

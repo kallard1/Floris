@@ -51,10 +51,10 @@ class VatRate
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-
+    
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -64,7 +64,7 @@ class VatRate
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -78,7 +78,7 @@ class VatRate
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -88,9 +88,9 @@ class VatRate
     }
 
     /**
-     * Set rate
+     * Set rate.
      *
-     * @param integer $rate
+     * @param float $rate
      *
      * @return VatRate
      */
@@ -102,9 +102,9 @@ class VatRate
     }
 
     /**
-     * Get rate
+     * Get rate.
      *
-     * @return int
+     * @return float
      */
     public function getRate()
     {
@@ -112,7 +112,7 @@ class VatRate
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -126,7 +126,7 @@ class VatRate
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -136,7 +136,7 @@ class VatRate
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -150,7 +150,7 @@ class VatRate
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -159,4 +159,3 @@ class VatRate
         return $this->updatedAt;
     }
 }
-

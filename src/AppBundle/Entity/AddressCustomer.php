@@ -96,7 +96,7 @@ class AddressCustomer
     private $customer;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -106,7 +106,7 @@ class AddressCustomer
     }
 
     /**
-     * Set line1
+     * Set line1.
      *
      * @param string $line1
      *
@@ -120,7 +120,7 @@ class AddressCustomer
     }
 
     /**
-     * Get line1
+     * Get line1.
      *
      * @return string
      */
@@ -130,13 +130,13 @@ class AddressCustomer
     }
 
     /**
-     * Set line2
+     * Set line2.
      *
-     * @param string $line2
+     * @param string|null $line2
      *
      * @return AddressCustomer
      */
-    public function setLine2($line2)
+    public function setLine2($line2 = null)
     {
         $this->line2 = $line2;
 
@@ -144,9 +144,9 @@ class AddressCustomer
     }
 
     /**
-     * Get line2
+     * Get line2.
      *
-     * @return string
+     * @return string|null
      */
     public function getLine2()
     {
@@ -154,7 +154,7 @@ class AddressCustomer
     }
 
     /**
-     * Set postalCode
+     * Set postalCode.
      *
      * @param string $postalCode
      *
@@ -168,7 +168,7 @@ class AddressCustomer
     }
 
     /**
-     * Get postalCode
+     * Get postalCode.
      *
      * @return string
      */
@@ -178,7 +178,7 @@ class AddressCustomer
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
      *
@@ -192,7 +192,7 @@ class AddressCustomer
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -202,7 +202,7 @@ class AddressCustomer
     }
 
     /**
-     * Set country
+     * Set country.
      *
      * @param string $country
      *
@@ -216,7 +216,7 @@ class AddressCustomer
     }
 
     /**
-     * Get country
+     * Get country.
      *
      * @return string
      */
@@ -226,7 +226,7 @@ class AddressCustomer
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
      *
@@ -240,7 +240,7 @@ class AddressCustomer
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -250,9 +250,9 @@ class AddressCustomer
     }
 
     /**
-     * Set asDefault
+     * Set asDefault.
      *
-     * @param boolean $asDefault
+     * @param bool $asDefault
      *
      * @return AddressCustomer
      */
@@ -264,7 +264,7 @@ class AddressCustomer
     }
 
     /**
-     * Get asDefault
+     * Get asDefault.
      *
      * @return bool
      */
@@ -274,7 +274,7 @@ class AddressCustomer
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -288,7 +288,7 @@ class AddressCustomer
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -298,7 +298,7 @@ class AddressCustomer
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -312,7 +312,7 @@ class AddressCustomer
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -322,19 +322,26 @@ class AddressCustomer
     }
 
     /**
-     * @return mixed
+     * Set customer.
+     *
+     * @param \AppBundle\Entity\Customer|null $customer
+     *
+     * @return AddressCustomer
+     */
+    public function setCustomer(\AppBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer.
+     *
+     * @return \AppBundle\Entity\Customer|null
      */
     public function getCustomer()
     {
         return $this->customer;
     }
-
-    /**
-     * @param mixed $customer
-     */
-    public function setCustomer($customer)
-    {
-        $this->customer = $customer;
-    }
 }
-
