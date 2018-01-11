@@ -14,7 +14,7 @@ class CategoryAdminController extends AbstractAdmin
         $formMapper
             ->add('name', 'text')
             ->add('description', 'textarea')
-            ->add('status', 'checkbox');
+            ->add('status', 'checkbox', ['required' => false]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
