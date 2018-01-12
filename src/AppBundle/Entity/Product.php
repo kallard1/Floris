@@ -67,9 +67,9 @@ class Product
     /**
      * @var int
      *
-     * @ORM\Column(name="promotion", type="smallint", options={"default": 0})
+     * @ORM\Column(name="promotion", type="smallint", nullable=true, options={"default": 0})
      */
-    private $promotion;
+    private $promotion = false;
 
     /**
      * @var \DateTime
