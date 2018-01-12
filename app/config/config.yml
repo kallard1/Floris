@@ -105,7 +105,7 @@ swiftmailer:
 
 sentry:
     dsn: "%sentry_dsn%"
-    release: "0.1.0"
+    release: "0.1.1"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -132,11 +132,6 @@ fos_user:
             enabled: true
         form:
             type: AppBundle\Form\RegistrationType
-
-sonata_core:
-    form:
-        mapping:
-            enabled: false
 
 sonata_block:
     default_contexts: [cms]
