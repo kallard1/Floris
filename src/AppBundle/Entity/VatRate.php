@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\OneToMany;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -51,7 +52,12 @@ class VatRate
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-    
+
+    /**
+     * One Product has Many Features.
+     * @OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="vatRate")
+     */
+    private $product;
 
     /**
      * Get id.
@@ -61,6 +67,16 @@ class VatRate
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -78,13 +94,13 @@ class VatRate
     }
 
     /**
-     * Get name.
+     * Get rate.
      *
-     * @return string
+     * @return float
      */
-    public function getName()
+    public function getRate()
     {
-        return $this->name;
+        return $this->rate;
     }
 
     /**
@@ -102,13 +118,13 @@ class VatRate
     }
 
     /**
-     * Get rate.
+     * Get createdAt.
      *
-     * @return float
+     * @return \DateTime
      */
-    public function getRate()
+    public function getCreatedAt()
     {
-        return $this->rate;
+        return $this->createdAt;
     }
 
     /**
@@ -126,13 +142,13 @@ class VatRate
     }
 
     /**
-     * Get createdAt.
+     * Get updatedAt.
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getUpdatedAt()
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -148,14 +164,47 @@ class VatRate
 
         return $this;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
-     * Get updatedAt.
+     * Add product.
      *
-     * @return \DateTime
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return VatRate
      */
-    public function getUpdatedAt()
+    public function addProduct(\AppBundle\Entity\Product $product)
     {
-        return $this->updatedAt;
+        $this->product[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product.
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduct(\AppBundle\Entity\Product $product)
+    {
+        return $this->product->removeElement($product);
+    }
+
+    /**
+     * Get product.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProduct()
+    {
+        return $this->product;
     }
 }
