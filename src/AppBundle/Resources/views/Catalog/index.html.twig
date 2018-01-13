@@ -20,7 +20,7 @@
                     {% for product in products %}
                         <tr class="row">
                             <td class="col-md-3">
-                                <img width="100%" src="/assets/images/products/<?= $product->sku ?>.jpg">
+                                {#<img width="100%" src="/assets/images/products/{{ product.sku }}.jpg">#}
                             </td>
                             <td class="col-md-6">
                                 <h4>{{ product.name }}</h4>
