@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
 
 class ProductAdminController extends AbstractAdmin
 {
@@ -18,6 +19,7 @@ class ProductAdminController extends AbstractAdmin
                     ->add('description', 'textarea')
                     ->add('sku', 'text')
                     ->add('status', 'checkbox', [
+                        'label' => 'Active',
                         'required' => false
                     ])
                 ->end()
@@ -30,8 +32,8 @@ class ProductAdminController extends AbstractAdmin
             ->tab('Price')
                 ->with('Price')
                     ->add('price', 'number')
-                    ->add('promotion', 'checkbox', [
-                        'required' => false,
+                    ->add('promotion','choice', [
+                        'choices' => array_combine(range(0, 100, 5), range(0, 100, 5))
                     ])
                     ->add('vatRate', 'sonata_type_model', [
                         'class' => 'AppBundle\Entity\VatRate',
@@ -58,6 +60,16 @@ class ProductAdminController extends AbstractAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('name');
+        $listMapper->addIdentifier('id')
+        ->addIdentifier('name')
+        ->add('status', null, [
+            'editable' => true
+        ])
+        ->add('stock')
+        ->add('price')
+        ->add('promotion','choice', [
+            'choices' => array_combine(range(0, 100, 5), range(0, 100, 5)),
+            'editable' => true
+        ]);
     }
 }
