@@ -5,9 +5,9 @@
 !/var/sessions
 !var/SymfonyRequirements.php
 
-web/assets/css/dist/*
-web/assets/fonts/dist/*
-web/assets/js/dist/*
+web/assets/css/*
+web/assets/fonts/*
+web/assets/js/*
 
 # Created by https://www.gitignore.io/api/symfony,composer,phpstorm,intellij+all
 

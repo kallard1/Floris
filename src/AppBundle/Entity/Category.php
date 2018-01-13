@@ -56,32 +56,36 @@ class Category
      * @ORM\Column(type="integer", nullable=true)
      */
     private $lft;
+
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(type="integer", nullable=true)
      */
     private $rgt;
+
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE", nullable=true)
      */
     private $parent;
+
     /**
      * @Gedmo\TreeRoot
      * @ORM\Column(type="integer", nullable=true)
      */
     private $root;
+
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer", nullable=true)
      */
     private $level;
+
     /**
      * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
      */
     private $children;
-
 
     /**
      * @var \DateTime $createdAt

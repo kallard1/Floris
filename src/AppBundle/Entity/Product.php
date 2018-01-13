@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Product
@@ -25,7 +27,7 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=45)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
@@ -69,19 +71,21 @@ class Product
      *
      * @ORM\Column(name="promotion", type="smallint", options={"default": 0})
      */
-    private $promotion;
+    private $promotion = 0;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $createdAt
      *
-     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var \DateTime
+     * @var \DateTime $updatedAt
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
@@ -94,10 +98,9 @@ class Product
     private $categories;
 
     /**
-     * @var
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\VatRate")
-     * @JoinColumn(name="vat_rate", referencedColumnName="id")
+     * Many Features have One Product.
+     * @ManyToOne(targetEntity="AppBundle\Entity\VatRate", inversedBy="product")
+     * @JoinColumn(name="vat_id", referencedColumnName="id")
      */
     private $vatRate;
 

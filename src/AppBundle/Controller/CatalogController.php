@@ -17,16 +17,15 @@ class CatalogController extends Controller
      */
     public function indexAction(Category $category)
     {
-        $repository = $this
+        $manager = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Product');
 
-        $products = $repository->getCatalogProduct($category);
-
-        dump($products);
-
-        return $this->render('AppBundle:Catalog:index.html.twig', []);
+        return $this->render('AppBundle:Catalog:index.html.twig', [
+            'products' => $manager->getCatalogProduct($category),
+            'category' => $category,
+        ]);
     }
 
 }

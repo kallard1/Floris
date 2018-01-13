@@ -1,7 +1,7 @@
 @import "components/colors";
 @import "components/variables";
 
-$primary-color: #FC9E73;
+$primary-color: #fc9e73;
 
 body {
   padding-top: 70px;
@@ -66,7 +66,7 @@ a {
   z-index: 9000;
   width: 202px;
   height: 61px;
-  background: url('../../images/logo.png') no-repeat;
+  background: url('../images/logo.png') no-repeat;
   background-size: 202px 61px;
   margin-top: 7px;
 }

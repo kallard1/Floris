@@ -14,6 +14,11 @@ class ProductRepository extends EntityRepository
 {
     public function getCatalogProduct($category)
     {
-        return $this->findBy(['categories' => $category]);
+        return $this->createQueryBuilder('p')
+            ->innerJoin('p.categories', 'c')
+            ->andWhere('c.id = :category')
+            ->setParameter('category', $category->getId())
+            ->getQuery()
+            ->getResult();
     }
 }
