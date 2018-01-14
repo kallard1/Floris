@@ -8,6 +8,7 @@
 web/assets/css/*
 web/assets/fonts/*
 web/assets/js/*
+package-lock.json
 
 # Created by https://www.gitignore.io/api/symfony,composer,phpstorm,intellij+all
 
