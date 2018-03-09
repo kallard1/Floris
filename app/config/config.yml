@@ -108,7 +108,6 @@ swiftmailer:
 
 sentry:
     dsn: "%sentry_dsn%"
-    release: "0.1.1"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
