@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "max-lines": ["error", {"max": 450, "skipComments": true}],
+  "max-nested-callbacks": ["error", 4],
+  "max-depth": ["error", 5],
+  "no-duplicate-case": "error"
+}
