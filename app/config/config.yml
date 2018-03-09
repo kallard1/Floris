@@ -32,6 +32,9 @@ framework:
     assets: ~
     php_errors:
         log: true
+    assets:
+        # feature is supported in Symfony 3.3 and higher
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
 
 # Twig Configuration
 twig:
@@ -133,9 +136,3 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
-
-framework:
-    # ...
-    assets:
-        # feature is supported in Symfony 3.3 and higher
-        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
