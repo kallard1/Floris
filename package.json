@@ -1,6 +1,6 @@
 {
   "name": "floris",
-  "version": "0.2.2-alpha",
+  "version": "0.3.0",
   "description": "floris",
   "main": "Gruntfile.js",
   "scripts": {
