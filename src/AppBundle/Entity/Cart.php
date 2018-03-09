@@ -33,7 +33,11 @@ class Cart
     /**
      * @var array
      *
-     * @ORM\Column(name="product", type="json_array")
+     * @ORM\ManyToMany(targetEntity="Product")
+     * @ORM\JoinTable(
+     *     name="cart_product",
+     *     joinColumns={@ORM\JoinColumn(name="cart_id", referencedColumnName="id", unique=false)},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="product_id", referencedColumnName="id", unique=false)})
      */
     private $product;
 
@@ -147,5 +151,62 @@ class Cart
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add product.
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return Cart
+     */
+    public function addProduct(\AppBundle\Entity\Product $product)
+    {
+        $this->product[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product.
+     *
+     * @param \AppBundle\Entity\Product $product
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeProduct(\AppBundle\Entity\Product $product)
+    {
+        return $this->product->removeElement($product);
+    }
+
+    /**
+     * Set quantity.
+     *
+     * @param int $quantity
+     *
+     * @return Cart
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Get quantity.
+     *
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 }
