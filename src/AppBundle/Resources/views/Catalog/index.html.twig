@@ -28,17 +28,23 @@
                             </td>
                             <td class="col-md-2 center-align red-text">
                                 {% if product.promotion > 0 %}
-                                <h5 style="text-decoration: line-through;">{{ product.price }} &euro;</h5>
-                                <p>-{{ product.promotion }}%</p>
-                                <h4>
-                                    {{ product.price - (product.price * product.promotion / 100) }} &euro;</h4>
+                                    <h5 style="text-decoration: line-through;">{{ product.price }} &euro;</h5>
+                                    <p>-{{ product.promotion }}%</p>
+                                    <h4>
+                                        {{ product.price - (product.price * product.promotion / 100) }} &euro;</h4>
                                 {% else %}
-                                <h4>{{ product.price }} &euro;</h4>
+                                    <h4>{{ product.price }} &euro;</h4>
                                 {% endif %}
                             </td>
                             <td class="col-md-1 center-align">
                                 <h5>
-                                    {{ (product.stock == 0) ? '<i class="mdi mdi-36px mdi-cart-off"></i>' : '<i onclick="addToCart(#{product.id})" class="mdi mdi-36px mdi-cart-plus"></i>' }}
+                                    {% if product.stock == 0 %}
+                                        <i class="mdi mdi-36px mdi-cart-off"></i>
+                                    {% else %}
+                                        <a href="{{ path('add_to_cart', {sku: product.sku}) }}">
+                                            <i class="mdi mdi-36px mdi-cart-plus"></i></a>
+                                        </a>
+                                    {% endif %}
                                 </h5>
                             </td>
                         </tr>
@@ -50,4 +56,8 @@
     {% else %}
         <h3>Aucun produit trouvé</h3>
     {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
 {% endblock %}
