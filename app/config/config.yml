@@ -114,12 +114,6 @@ doctrine_migrations:
     name: Application Migrations
     organize_migrations: BY_YEAR_AND_MONTH # Version >=1.2 Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
 
-assetic:
-    debug:          '%kernel.debug%'
-    use_controller: '%kernel.debug%'
-    filters:
-        cssrewrite: ~
-
 fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
@@ -139,3 +133,9 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
+
+framework:
+    # ...
+    assets:
+        # feature is supported in Symfony 3.3 and higher
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'

@@ -27,7 +27,6 @@ class Version20180110214304 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SCHEMA public');
         $this->addSql('ALTER TABLE product DROP CONSTRAINT FK_D34A04ADF684F7C7');
         $this->addSql('DROP INDEX UNIQ_D34A04ADF684F7C7');
         $this->addSql('ALTER TABLE product RENAME COLUMN vat_rate TO vat_rate_id');

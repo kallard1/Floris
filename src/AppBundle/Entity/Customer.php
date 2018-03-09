@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Customer
@@ -93,12 +92,29 @@ class Customer extends BaseUser
     private $addresses;
 
     /**
+     * One Customer has One Cart.
+     * @ORM\OneToOne(targetEntity="Cart", mappedBy="customer")
+     */
+    private $cart;
+
+
+    /**
      * Customer constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->addresses = new ArrayCollection();
+    }
+
+    /**
+     * Get businessName.
+     *
+     * @return string
+     */
+    public function getBusinessName()
+    {
+        return $this->businessName;
     }
 
     /**
@@ -116,13 +132,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get businessName.
+     * Get vatNumber.
      *
      * @return string
      */
-    public function getBusinessName()
+    public function getVatNumber()
     {
-        return $this->businessName;
+        return $this->vatNumber;
     }
 
     /**
@@ -140,13 +156,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get vatNumber.
+     * Get companyRegister.
      *
      * @return string
      */
-    public function getVatNumber()
+    public function getCompanyRegister()
     {
-        return $this->vatNumber;
+        return $this->companyRegister;
     }
 
     /**
@@ -164,13 +180,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get companyRegister.
+     * Get createdFromIp.
      *
-     * @return string
+     * @return string|null
      */
-    public function getCompanyRegister()
+    public function getCreatedFromIp()
     {
-        return $this->companyRegister;
+        return $this->createdFromIp;
     }
 
     /**
@@ -188,13 +204,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get createdFromIp.
+     * Get updatedFromIp.
      *
      * @return string|null
      */
-    public function getCreatedFromIp()
+    public function getUpdatedFromIp()
     {
-        return $this->createdFromIp;
+        return $this->updatedFromIp;
     }
 
     /**
@@ -212,13 +228,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get updatedFromIp.
+     * Get token.
      *
      * @return string|null
      */
-    public function getUpdatedFromIp()
+    public function getToken()
     {
-        return $this->updatedFromIp;
+        return $this->token;
     }
 
     /**
@@ -236,13 +252,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get token.
+     * Get createdAt.
      *
-     * @return string|null
+     * @return \DateTime
      */
-    public function getToken()
+    public function getCreatedAt()
     {
-        return $this->token;
+        return $this->createdAt;
     }
 
     /**
@@ -260,13 +276,13 @@ class Customer extends BaseUser
     }
 
     /**
-     * Get createdAt.
+     * Get updatedAt.
      *
      * @return \DateTime
      */
-    public function getCreatedAt()
+    public function getUpdatedAt()
     {
-        return $this->createdAt;
+        return $this->updatedAt;
     }
 
     /**
@@ -281,16 +297,6 @@ class Customer extends BaseUser
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-
-    /**
-     * Get updatedAt.
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
     }
 
     /**
@@ -327,5 +333,21 @@ class Customer extends BaseUser
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param mixed $cart
+     */
+    public function setCart($cart)
+    {
+        $this->cart = $cart;
     }
 }

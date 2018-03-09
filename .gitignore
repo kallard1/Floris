@@ -9,6 +9,7 @@ web/assets/css/*
 web/assets/fonts/*
 web/assets/js/*
 package-lock.json
+web/build/*
 
 # Created by https://www.gitignore.io/api/symfony,composer,phpstorm,intellij+all
 
@@ -227,7 +228,7 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
+# Compiled addons (http://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directories
