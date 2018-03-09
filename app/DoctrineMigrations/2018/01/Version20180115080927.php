@@ -8,15 +8,14 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20180110210928 extends AbstractMigration
+class Version20180115080927 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE vat_rate ALTER rate TYPE DOUBLE PRECISION');
-        $this->addSql('ALTER TABLE vat_rate ALTER rate DROP DEFAULT');
+        $this->addSql('ALTER TABLE cart ADD quantity INT NOT NULL');
     }
 
     public function down(Schema $schema)
@@ -24,7 +23,6 @@ class Version20180110210928 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('ALTER TABLE vat_rate ALTER rate TYPE SMALLINT');
-        $this->addSql('ALTER TABLE vat_rate ALTER rate DROP DEFAULT');
+        $this->addSql('ALTER TABLE cart DROP quantity');
     }
 }

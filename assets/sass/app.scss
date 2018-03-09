@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+@import "components/colors";
+@import "components/variables";
+$primary-color: #fc9e73;
+
+
+.jumbotron-white {
+  margin-top: 25px;
+  background-color: #ffffff;
+}
