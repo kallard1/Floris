@@ -85,14 +85,17 @@
               url: element.data('href'),
               data: 'quantity=' + quantity,
               success: function (result) {
-                console.log(result)
-                var panierCount = $('div.total')
-                var qty = parseInt(panierCount.html()) + parseInt(quantity)
-                panierCount.html(qty)
+                swal({
+                  title: "Produit ajouté au panier",
+                  icon: "success"
+                })
               },
               fail: function (result) {
-                console.log(result)
-                alert('L\'ajout à échoué, assurez vous que la quantitée indiqué est supérieure ou égale à 1')
+                swal({
+                  title: "Echec de l'ajout",
+                  text: "L'ajout à échoué, assurez vous que la quantitée indiqué est supérieure ou égale à 1",
+                  icon: "error"
+                })
               }
             })
           }

@@ -6,6 +6,8 @@ global.datatables = require('datatables.net-bs4')
 require('datatables.net-autofill-bs4')
 require('datatables.net-buttons-bs4')
 
+import swal from 'sweetalert';
+
 $(document).ready(() => {
   $('ul.nav li.dropdown').hover(function () {
     $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500)

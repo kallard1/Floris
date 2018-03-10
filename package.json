@@ -21,7 +21,6 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0",
-    "bootstrap-sweetalert": "^1.0.1",
     "datatables.net-autofill-bs4": "^2.2.2",
     "datatables.net-bs": "^1.10.16",
     "datatables.net-bs4": "^1.10.16",
@@ -31,7 +30,8 @@
     "lodash": "^4.17.5",
     "npm": "^5.7.1",
     "pdfmake": "^0.1.36",
-    "popper.js": "^1.13.0"
+    "popper.js": "^1.13.0",
+    "sweetalert": "^2.1.0"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.17.1",
