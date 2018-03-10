@@ -20,7 +20,7 @@
                     {% for product in products %}
                         <tr class="row">
                             <td class="col-md-3">
-                                {#<img width="100%" src="/assets/images/products/{{ product.sku }}.jpg">#}
+                                <img width="100%" src="{{ asset('images/no-image.jpg') }}">
                             </td>
                             <td class="col-md-6">
                                 <h4>{{ product.name }}</h4>
@@ -29,24 +29,32 @@
                             <td class="col-md-2 center-align red-text">
                                 {% if product.promotion > 0 %}
                                     <h5 style="text-decoration: line-through;">{{ product.price }} &euro;</h5>
-                                    <p>-{{ product.promotion }}%</p>
+                                    <p style="font-weight: bold; color: red;">-{{ product.promotion }}%</p>
                                     <h4>
                                         {{ product.price - (product.price * product.promotion / 100) }} &euro;</h4>
                                 {% else %}
                                     <h4>{{ product.price }} &euro;</h4>
                                 {% endif %}
+
+                                {% if product.stock != 0 %}
+                                    <select id="quantity-product-{{ product.id }}" class="form-control item_quantity">
+                                        {% for i in 1..product.stock %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label for="quantity-product-{{ product.id }}"></label>
+                                {% else %}
+                                    Produit épuisé
+                                {% endif %}
                             </td>
-                            <td class="col-md-1 center-align">
-                                <h5>
-                                    {% if product.stock == 0 %}
-                                        <i class="mdi mdi-36px mdi-cart-off"></i>
-                                    {% else %}
-                                        <a href="{{ path('add_to_cart', {sku: product.sku}) }}">
-                                            <i class="mdi mdi-36px mdi-cart-plus"></i></a>
-                                        </a>
-                                    {% endif %}
-                                </h5>
-                            </td>
+                            {% if product.stock != 0 %}
+                                <td class="col-md-1 center-align">
+                                    <a data-href="{{ path('add_to_cart', {id: product.id}) }}"
+                                       data-id="{{ product.id }}" class="btn btn-default" type="button">
+                                        Ajouter au panier
+                                    </a>
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -60,4 +68,38 @@
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script>
+      $(document).ready(function () {
+        $('a').click(function (e) {
+          var element = $(e.target)
+
+          if (element.attr('data-href')) {
+            e.preventDefault()
+
+            const productId = element.data('id');
+
+            var quantity = $('#quantity-product-' + productId).find(':selected').val()
+
+            $.ajax({
+              url: element.data('href'),
+              data: 'quantity=' + quantity,
+              success: function (result) {
+                swal({
+                  title: "Produit ajouté au panier",
+                  icon: "success"
+                })
+              },
+              fail: function (result) {
+                swal({
+                  title: "Echec de l'ajout",
+                  text: "L'ajout à échoué, assurez vous que la quantitée indiqué est supérieure ou égale à 1",
+                  icon: "error"
+                })
+              }
+            })
+          }
+        })
+      })
+    </script>
 {% endblock %}

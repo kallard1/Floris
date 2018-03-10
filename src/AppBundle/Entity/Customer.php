@@ -92,13 +92,6 @@ class Customer extends BaseUser
     private $addresses;
 
     /**
-     * One Customer has One Cart.
-     * @ORM\OneToOne(targetEntity="Cart", mappedBy="customer")
-     */
-    private $cart;
-
-
-    /**
      * Customer constructor.
      */
     public function __construct()
@@ -333,21 +326,5 @@ class Customer extends BaseUser
     public function getAddresses()
     {
         return $this->addresses;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCart()
-    {
-        return $this->cart;
-    }
-
-    /**
-     * @param mixed $cart
-     */
-    public function setCart($cart)
-    {
-        $this->cart = $cart;
     }
 }

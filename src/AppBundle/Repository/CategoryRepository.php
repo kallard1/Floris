@@ -13,6 +13,11 @@ use Doctrine\ORM\EntityRepository;
 class CategoryRepository extends EntityRepository
 {
     public function getCategories($active) {
-        return $this->findBy(['status' => $active]);
+        return $this->createQueryBuilder('c')
+            ->where('c.id != 1')
+            ->andWhere('c.status = :active')
+            ->setParameter('active', $active)
+            ->getQuery()
+            ->getResult();
     }
 }

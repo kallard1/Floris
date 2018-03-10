@@ -5,10 +5,8 @@ Floris
 
 - Apache/PHP ou NGINX/PHP-FPM
 - Postgres
-- Redis (Facultatif : Non mis en place, utilisation utlérieure)
 - NodeJS
 - NPM
-- Grunt-cli
 - Composer
 - PHPUnit
 
@@ -29,4 +27,4 @@ Floris
 1. Executer les migrations doctrine :
    - `php bin/console doctrine:migration:migrate`
 2. Vider les caches :
-   - ``
+   - `php bin/console cache:clear --no-warmup --env=production`

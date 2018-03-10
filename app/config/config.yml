@@ -29,9 +29,13 @@ framework:
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments: ~
     http_method_override: true
-    assets: ~
+    assets:
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
     php_errors:
         log: true
+    assets:
+        # feature is supported in Symfony 3.3 and higher
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
 
 # Twig Configuration
 twig:
@@ -62,24 +66,24 @@ doctrine:
                 naming_strategy: doctrine.orm.naming_strategy.underscore
                 auto_mapping: true
                 mappings:
-                    gedmo_translatable:
-                        type: annotation
-                        prefix: Gedmo\Translatable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
-                        is_bundle: false
-                    gedmo_translator:
-                        type: annotation
-                        prefix: Gedmo\Translator\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
-                        alias: GedmoTranslator # (optional) it will default to the name set for the mapping
-                        is_bundle: false
-                    gedmo_loggable:
-                        type: annotation
-                        prefix: Gedmo\Loggable\Entity
-                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-                        alias: GedmoLoggable # (optional) it will default to the name set for the mapping
-                        is_bundle: false
+#                    gedmo_translatable:
+#                        type: annotation
+#                        prefix: Gedmo\Translatable\Entity
+#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+#                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+#                        is_bundle: false
+#                    gedmo_translator:
+#                        type: annotation
+#                        prefix: Gedmo\Translator\Entity
+#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+#                        alias: GedmoTranslator # (optional) it will default to the name set for the mapping
+#                        is_bundle: false
+#                    gedmo_loggable:
+#                        type: annotation
+#                        prefix: Gedmo\Loggable\Entity
+#                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
+#                        alias: GedmoLoggable # (optional) it will default to the name set for the mapping
+#                        is_bundle: false
                     gedmo_tree:
                         type: annotation
                         prefix: Gedmo\Tree\Entity
@@ -105,7 +109,6 @@ swiftmailer:
 
 sentry:
     dsn: "%sentry_dsn%"
-    release: "0.1.1"
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"
@@ -133,9 +136,3 @@ sonata_block:
         # enable the SonataAdminBundle block
         sonata.admin.block.admin_list:
             contexts: [admin]
-
-framework:
-    # ...
-    assets:
-        # feature is supported in Symfony 3.3 and higher
-        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
