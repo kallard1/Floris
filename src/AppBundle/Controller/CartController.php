@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,36 +43,22 @@ class CartController extends Controller
     }
 
     /**
+     * @Route("/cart", name="cart")
      * @param Request $request
      * @return int|Response
      */
     public function listAction(Request $request)
     {
         $products = $request->getSession()->get('products', []);
-        $total    = 0;
-        if ($request->isXmlHttpRequest()) {
-            $count = 0;
-            foreach ($products as $product) {
-                $count += $product['quantity'];
-            }
-            return new Response($count);
-        }
-        foreach ($products as $list) {
-            /** @var Product $product */
-            $product = $list['product'];
-            $total   += ($product->getPriceHt() * $list['quantity']);
-            if ($product->getPromotion() !== null) {
-                $total -= ($product->getPromotion()->getTaux() / 100) * $total;
-            }
-            $total = number_format($total, 2);
-        }
+
         return $this->render('AppBundle:Cart:list.html.twig', [
             'products' => $products,
-            'total' => $total
+
         ]);
     }
 
     /**
+     * @Route("/cart/remove/{id}", name="remove_to_cart")
      * @ParamConverter("product", class="AppBundle:Product")
      * @param Request $request
      * @param Product $product
@@ -93,6 +80,6 @@ class CartController extends Controller
             throw new EntityNotFoundException('La ressource demandée n\'existe pas dans le panier.');
         }
         $session->set('products', $products);
-        return $this->redirectToRoute('app_cart_see');
+        return $this->redirectToRoute('cart');
     }
 }
