@@ -1,6 +1,10 @@
-global.$ = global.jQuery = require('jquery')
+global.$ = require('jquery')
 require('popper.js')
 require('bootstrap')
+
+global.datatables = require('datatables.net-bs4')
+require('datatables.net-autofill-bs4')
+require('datatables.net-buttons-bs4')
 
 $(document).ready(() => {
   $('ul.nav li.dropdown').hover(function () {
