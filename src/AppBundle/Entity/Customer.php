@@ -92,6 +92,12 @@ class Customer extends BaseUser
     private $addresses;
 
     /**
+     *
+     * @ORM\OneToOne(targetEntity="Cart", mappedBy="customer")
+     */
+    private $cart;
+
+    /**
      * Customer constructor.
      */
     public function __construct()
@@ -326,5 +332,29 @@ class Customer extends BaseUser
     public function getAddresses()
     {
         return $this->addresses;
+    }
+
+    /**
+     * Set cart.
+     *
+     * @param \AppBundle\Entity\Cart|null $cart
+     *
+     * @return Customer
+     */
+    public function setCart(\AppBundle\Entity\Cart $cart = null)
+    {
+        $this->cart = $cart;
+
+        return $this;
+    }
+
+    /**
+     * Get cart.
+     *
+     * @return \AppBundle\Entity\Cart|null
+     */
+    public function getCart()
+    {
+        return $this->cart;
     }
 }

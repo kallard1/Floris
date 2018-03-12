@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Cart;
 use AppBundle\Entity\Product;
 use Doctrine\ORM\EntityNotFoundException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -10,6 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class CartController
+ * @package AppBundle\Controller
+ */
 class CartController extends Controller
 {
     /**
@@ -25,20 +30,45 @@ class CartController extends Controller
         if ($quantity < 1) {
             return new Response('Quantitée négative ou de 0', '400');
         }
-        $session   = $request->getSession();
-        $products  = $session->get('products', []);
+
+        $customer = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $cart = $em->getRepository('AppBundle:Cart')->findOrNull($customer);
+
+        /*
+         * Création du cart s'il n'existe pas
+         */
+        if ($cart === null) {
+            $newCart = new Cart();
+
+            $newCart->setCustomer($customer);
+
+            $em->persist($newCart);
+            $em->flush();
+
+            $cart = $newCart->getId();
+        }
+
+        $products  = ($cart->getCart() === null) ? array() : $cart->getCart();
         $found     = false;
         $promotion = $product->getPromotion() == null ? null : $product->getPromotion();
+
         foreach ($products as $key => $value) {
-            if ($product->getId() === $value['product']->getId()) {
+            if ($product->getSku() === $value['product_sku']) {
                 $products[$key]['quantity'] += $quantity;
                 $found                      = true;
             }
         }
         if ($found == false) {
-            array_push($products, ['product' => $product, 'quantity' => $quantity, 'promotion' => $promotion]);
+            array_push($products, ['product_sku' => $product->getSku(), 'quantity' => $quantity, 'promotion' => $promotion]);
         }
-        $session->set('products', $products);
+
+        $cart->setCart($products);
+        $em->persist($cart);
+        $em->flush();
+
         return new Response();
     }
 
@@ -49,6 +79,11 @@ class CartController extends Controller
      */
     public function listAction(Request $request)
     {
+
+        $cart = $this->getDoctrine()->getManager()->getRepository('AppBundle:Cart')->findOrNull($this->getUser());
+
+        var_dump($cart);
+
         $products = $request->getSession()->get('products', []);
 
         return $this->render('AppBundle:Cart:list.html.twig', [
