@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use AppBundle\Entity\AddressCustomer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType
@@ -17,9 +18,9 @@ class RegistrationType extends AbstractType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('businessName')
-            ->add('companyRegister')
-            ->add('vatNumber')
+        $builder->add('businessName', TextType::class)
+            ->add('companyRegister', TextType::class)
+            ->add('vatNumber', TextType::class)
             ->add('addresses',  CollectionType::class, array(
                 'entry_type' => AddressCustomerType::class,
                 'entry_options' => array('label' => false),
