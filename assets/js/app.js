@@ -1,12 +1,15 @@
-global.$ = require('jquery')
-require('popper.js')
+// require jQuery normally
+const $ = require('jquery')
+
+// create global $ and jQuery variables
+global.$ = global.jQuery = $
+
 require('bootstrap')
+require('sweetalert')
 
 global.datatables = require('datatables.net-bs4')
 require('datatables.net-autofill-bs4')
 require('datatables.net-buttons-bs4')
-
-import swal from 'sweetalert';
 
 $(document).ready(() => {
   $('ul.nav li.dropdown').hover(function () {
