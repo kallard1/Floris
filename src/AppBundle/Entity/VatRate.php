@@ -2,8 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\Mapping\OneToMany;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -55,9 +55,17 @@ class VatRate
 
     /**
      * One Product has Many Features.
-     * @OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="vatRate")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Product", mappedBy="vatRate")
      */
     private $product;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->product = new ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -163,13 +171,6 @@ class VatRate
         $this->updatedAt = $updatedAt;
 
         return $this;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
